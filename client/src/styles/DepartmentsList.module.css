@@ -1,0 +1,89 @@
+.container {
+  margin-top: 0;
+  margin-right: 20px;
+  margin-bottom: 35px;
+  margin-left: 20px;
+  padding: 0;
+
+  list-style: none;
+}
+
+.item {
+  margin-bottom: 15px;
+  width: 100%;
+  min-width: 280px;
+
+  border: 1px solid #4db6ac;
+  border-radius: 5px;
+}
+
+.item:hover {
+  cursor: pointer;
+  background-color: #4db6ac;
+  color: #ffffff;
+}
+
+.item:last-child {
+  margin-bottom: 0;
+}
+
+.departmentLink {
+  display: flex;
+  align-items: center;
+
+  margin: 0;
+  padding-top: 5px;
+  padding-right: auto;
+  padding-bottom: 5px;
+  padding-left: 5px;
+
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+
+.iconContainer {
+  margin: 0;
+  margin-right: 10px;
+  padding-top: 7px;
+  padding-right: 0;
+  padding-bottom: 0;
+  padding-left: 7px;
+
+  width: 35px;
+  height: 35px;
+
+  background-color: #4db6ac;
+  border-radius: 50%;
+}
+
+.iconContainer svg {
+  width: 20px;
+  height: 20px;
+}
+
+@media(min-width: 768px) {
+  .container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    margin-right: auto;
+    margin-left: auto;
+
+    width: 649px;
+  }
+
+  .item {
+    width: 307px;
+  }
+
+  .item:last-child {
+    margin-bottom: 15px;
+  }
+}
+
+@media(min-width: 1440px) {
+  .container {
+    width: 940px;
+  }
+}

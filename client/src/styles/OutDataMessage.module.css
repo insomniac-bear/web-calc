@@ -1,0 +1,9 @@
+.text {
+  margin: 0;
+  margin-bottom: 35px;
+  padding: 0;
+
+  font-size: 18px;
+  text-align: center;
+  text-transform: uppercase;
+}

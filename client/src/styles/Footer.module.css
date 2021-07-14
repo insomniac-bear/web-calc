@@ -1,0 +1,47 @@
+.container {
+  margin: 0;
+  padding: 0;
+
+  width: 100%;
+  min-width: 320px;
+
+  min-height: 190px;
+
+  background-color: #383838;
+}
+
+@media(min-height: 921px) {
+  .container {
+    position: fixed;
+    bottom: 0;
+  }
+}
+
+@media(min-width: 768px) {
+  @media(min-height: 921px) {
+    .container {
+      position:static;
+    }
+  }
+
+  @media(min-height: 1363px) {
+    .container {
+      position:fixed;
+    }
+  }
+}
+
+@media(min-width: 1440px) {
+  @media(min-height: 1363px) {
+    .container {
+      position:static;
+    }
+  }
+
+  @media(min-height: 1144px) {
+    .container {
+      position:fixed;
+    }
+  }
+}
+

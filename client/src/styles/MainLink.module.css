@@ -1,0 +1,92 @@
+.link {
+  display: block;
+  margin: 0;
+  padding: 0;
+  padding-top: 15px;
+  padding-bottom: 30px;
+
+  width: 280px;
+
+  border: 1px solid #30ad64;
+  border-radius: 5px;
+
+  cursor: pointer;
+}
+
+.link:hover {
+  box-shadow: #676770 3px 3px 2px 0px;
+}
+
+.decorateBlock {
+  margin: 0 auto;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  padding-left: 10px;
+
+  width: 90px;
+  height: 90px;
+
+  background-color:  #30ad64;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 80%;
+
+  border: 10px solid #ffffff;
+  border-radius: 50%;
+
+  box-shadow: #30ad64 0px 0px 0px 1px;
+}
+
+.decorateBlock svg {
+  width: 50px;;
+  height: 50px;
+}
+
+.title {
+  margin: 0;
+  margin-bottom: 5px;
+  padding: 0;
+
+  color: #676770;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.text {
+  margin: 0;
+  padding: 0;
+
+  color: #30ad64;
+  font-size: 12px;
+  text-align: center;
+}
+
+@media(min-width: 768px) {
+  .link {
+    padding-top: 35px;
+    padding-bottom: 25px;
+    width: 460px;
+  }
+
+  .decorateBlock {
+    margin-bottom: 20px;
+    width: 130px;
+    height: 130px;
+  }
+
+  .decorateBlock svg {
+    width: 90px;
+    height: 90px;
+  }
+
+  .title {
+    margin-bottom: 0;
+    font-size: 24px; 
+  }
+
+  .text {
+    font-size: 14px;
+  }
+}

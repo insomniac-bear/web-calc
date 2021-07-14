@@ -1,0 +1,23 @@
+.loadMoreBtn {
+  display: block;
+  margin: 0 auto;
+  padding: 0;
+
+  color: #676770;
+  font-size: 24px;
+  text-transform: uppercase;
+
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+}
+
+.loadMoreBtn:hover {
+  color: #4db6ac;
+}
+
+@media(min-width: 768px) {
+  .loadMoreBtn {
+    margin-bottom: 100px;
+  }
+}

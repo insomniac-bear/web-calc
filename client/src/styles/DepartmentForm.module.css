@@ -1,0 +1,50 @@
+.form {
+  margin: 0 auto;
+  padding: 0;
+
+  min-width: 320px;
+  max-width: 940px;
+  width: 100%;
+
+  overflow: auto;
+}
+
+.formHeader {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  margin: 0;
+  padding-top: 30px;
+  padding-right: 0;
+  padding-bottom: 25px;
+  padding-left: 0;
+
+  border: none;
+}
+
+.fieldName {
+  margin: 0;
+  margin-right: 25px;
+  padding: 0;
+
+  color: #676770;
+  font-size: 16px;
+}
+
+.departmentField {
+  margin: 0;
+  padding: 5px 10px;;
+
+  width: 300px;
+
+  border-top: none;
+  border-right: none;
+  border-bottom: 1px solid #676770;
+  border-left: none;
+}
+
+.departmentField::placeholder {
+  color: rgba(77, 182, 172, .5);
+  font-size: 16px;
+}

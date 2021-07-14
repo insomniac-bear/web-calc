@@ -1,0 +1,34 @@
+.addDepartment {
+  display: flex;
+  align-items: center;
+  margin-top: 0;
+  margin-right: 0;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  padding: 0;
+
+  width: fit-content;
+
+  background-color: inherit;
+  border: none;
+
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+
+  cursor: pointer;
+}
+
+.addDepartment svg {
+  margin-right: 10px;
+}
+
+.addDepartment:hover {
+  color: #4db6ac;
+}
+
+@media(min-width: 1440px) {
+  .addDepartment {
+    margin-left: 0;
+  }
+}

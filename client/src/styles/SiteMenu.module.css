@@ -1,0 +1,115 @@
+.containerOn {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 20px;
+  padding-bottom: 14px;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+
+  background-color: #ffffff;
+}
+
+.container {
+  display: none;
+}
+
+.list {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.item {
+  margin-right: 20px;
+}
+
+.item:last-child {
+  margin-right: 0;
+}
+
+.link {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: #30ad64;
+  fill: #30ad64;
+  height: 100%;
+  border: none;
+  background-color: inherit;
+}
+
+.link:hover {
+  color: #9ec6af;
+}
+
+.btnClose {
+  position: relative;
+  margin: 0;
+  margin-top: 5px;
+  padding: 0;
+
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+
+  width: 20px;
+  height: 20px;
+}
+
+.btnClose::before,
+.btnClose::after {
+  content: "";
+  position: absolute;
+
+  height: 2px;
+  width: 25px;
+  background-color: #30ad64;
+
+  top: 9px;
+}
+
+.btnClose::before {
+  left: -3px;
+  transform: rotate(45deg);
+}
+
+.btnClose::after {
+  left: -3px;
+  transform: rotate(-45deg);
+}
+
+.btnClose:hover::before,
+.btnClose:hover::after {
+  background-color: #9ec6af;
+}
+
+@media(min-width: 768px) {
+  .container {
+    order: 2;
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+
+    background-color: #ffffff;
+  }
+
+  .item {
+    margin-right: 40px;
+  }
+
+  .item:last-child {
+    margin-right: 0;
+  }
+
+  .btnClose {
+    display: none;
+  }
+}
