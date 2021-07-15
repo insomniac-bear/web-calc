@@ -42,7 +42,7 @@ const companySlice = createSlice({
     },
     [loadCompany.fulfilled]: (state, action) => {
       state.status = 'successed';
-      state.companyName = action.payload.data;
+      state.companyName = action.payload.data[0].companyName;
     },
   },
 });

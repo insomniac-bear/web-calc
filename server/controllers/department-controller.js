@@ -1,5 +1,5 @@
 const { StatusCodes } = require('http-status-codes');
-const departmentService = require('../../service/department-service');
+const departmentService = require('../service/department-service');
 
 class DepartmenController {
   async getDepartments (req, res, next) {

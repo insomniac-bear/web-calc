@@ -21,6 +21,6 @@ userRouter.get('/refresh', userController.refresh);
 userRouter.post('/users', [ authMiddleware ], userController.getUsers);
 
 // Route for create user
-userRouter.post('/registration', [ authMiddleware, roleCheckMiddleware ], userController.registration);
+userRouter.post('/registration', [ authMiddleware ], userController.registration);
 
 module.exports = userRouter;

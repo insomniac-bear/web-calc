@@ -3,7 +3,7 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const express = require('express');
 const mongoose = require('mongoose');
-const {StatusCodes} = require('http-status-codes');
+const { StatusCodes } = require('http-status-codes');
 // Routes
 const companyRouter = require('./routes/company-router');
 const departmentRouter = require('./routes/department-router');
@@ -42,7 +42,7 @@ app.use(cors({
 // Connect routes API
 app.use('/api/user', userRouter);
 app.use('/api/department', departmentRouter);
-app.use('api/companies', companyRouter);
+app.use('/api/companies', companyRouter);
 
 app.use((req, res, next) => {
   logger.info(chalk.green(`Request on route ${req.url}`));
