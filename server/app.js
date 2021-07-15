@@ -1,8 +1,10 @@
+// Third party libraries
 const chalk = require('chalk');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const express = require('express');
 const mongoose = require('mongoose');
+const path = require('path');
 const { StatusCodes } = require('http-status-codes');
 // Routes
 const companyRouter = require('./routes/company-router');
@@ -44,6 +46,16 @@ app.use('/api/user', userRouter);
 app.use('/api/department', departmentRouter);
 app.use('/api/companies', companyRouter);
 
+// use static file index.html on production mode
+if (process.env.NODE_ENV === 'production') {
+  app.use('/', express.static(path.join(__dirname, '../client', 'build')));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'));
+  });
+}
+
+// Logger fo all request
 app.use((req, res, next) => {
   logger.info(chalk.green(`Request on route ${req.url}`));
   res.on('finish', () => {

@@ -6,6 +6,7 @@
   "scripts": {
     "test": "test",
     "start": "cross-env nodemon -r dotenv/config app.js",
+    "production": "cross-env NODE_ENV=production node -r dotenv/config app.js",
     "createadm": "cross-env node -r dotenv/config create-admin.js"
   },
   "keywords": [
