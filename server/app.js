@@ -17,9 +17,9 @@ const { ExitCode } = require('./constants');
 const app = express();
 const logger = getLogger({name: 'api'});
 
-const DEFAULT_PORT = 8000;
+const PORT = process.env.NODE_ENV === 'production' ? process.env.PRODUCTION_PORT : 8000;
 const uriDb = process.env.CONNECTION_STRING;
-const CLIENT_URL = process.env.CLIENT_URL;
+const CLIENT_URL = process.env.NODE_ENV === 'production' ? process.env.CLIENT_URL : process.env.PRODUCTION_CLIENT_URL;
 const allowedDomains = [
   `${CLIENT_URL}`,
   `${CLIENT_URL}/`,
@@ -88,7 +88,7 @@ async function start() {
       useCreateIndex: true,
     });
     // Listen port
-    app.listen(DEFAULT_PORT, () => logger.info(chalk.green(`Server API has been started on port ${ DEFAULT_PORT }`)));
+    app.listen(DEFAULT_PORT, () => logger.info(chalk.green(`Server API has been started on port ${ PORT }`)));
   } catch (err) {
     logger.error(chalk.red(`Server error: ${ err.message }`));
     process.exit(ExitCode.ERROR);
