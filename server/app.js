@@ -88,7 +88,7 @@ async function start() {
       useCreateIndex: true,
     });
     // Listen port
-    app.listen(DEFAULT_PORT, () => logger.info(chalk.green(`Server API has been started on port ${ PORT }`)));
+    app.listen(PORT, () => logger.info(chalk.green(`Server API has been started on port ${ PORT }`)));
   } catch (err) {
     logger.error(chalk.red(`Server error: ${ err.message }`));
     process.exit(ExitCode.ERROR);
