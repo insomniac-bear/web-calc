@@ -19,4 +19,4 @@ export const HttpCode = {
   INTERNAL_SERVER_ERROR: 500,
 }
 
-export const API_URL = 'http://www.bearlounge.ru/api';
+export const API_URL = 'bearlounge.ru/api';
