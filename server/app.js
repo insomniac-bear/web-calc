@@ -29,18 +29,18 @@ const allowedDomains = [
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({
-  origin: (origin, callback) => {
-		if (!allowedDomains.includes(origin)) {
-			const msg = `Access denied`;
-			return callback(new Error(msg), false);
-		}
-		return callback(null, true);
-  },
-  methods: 'GET,HEAD,POST,PUT,PATCH,DELETE,OPTIONS',
-  credentials: true,
-  preflightContinue: false,
-}));
+// app.use(cors({
+//   origin: (origin, callback) => {
+// 		if (!allowedDomains.includes(origin)) {
+// 			const msg = `Access denied`;
+// 			return callback(new Error(msg), false);
+// 		}
+// 		return callback(null, true);
+//   },
+//   methods: 'GET,HEAD,POST,PUT,PATCH,DELETE,OPTIONS',
+//   credentials: true,
+//   preflightContinue: false,
+// }));
 // Connect routes API
 app.use('/api/user', userRouter);
 app.use('/api/department', departmentRouter);
