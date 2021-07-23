@@ -1,13 +1,7 @@
-// Third party libraries
-import { useSelector } from 'react-redux';
 // Components
 import { Footer } from '../Components/Footer';
 import { Promo } from '../Components/Promo';
 import { LoginPopup } from '../Components/Login-popup.jsx';
-// // Methods for work with client store
-import { getAuthenticatedStatus } from '../clientStore/authSlice/auth-sliice';
-// Util functions
-import { showComponent } from '../util/utils';
 
 export default function Authorization () {
   return (
@@ -15,7 +9,7 @@ export default function Authorization () {
       <main className='authMain'>
         <Promo />
         <section className='auth'>
-          <LoginPopup />
+          <LoginPopup isPopup={false}/>
         </section>
       </main>
       <Footer />

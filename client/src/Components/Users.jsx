@@ -12,7 +12,7 @@ import { SettingsContainer } from './Settings-container';
 import { SettingsHeader } from "./Settings-header";
 import { SettingsTitle } from './Settings-title';
 // Functions for work with state
-import { getCompanyId, getUserRole } from '../clientStore/authSlice/auth-sliice';
+import { getCompanyId } from '../clientStore/authSlice/auth-sliice';
 import { loadUsers, getUsers, getProcessUsersLoading } from '../clientStore/usersSlice/user-slice';
 // Util functions
 import { showComponent } from '../util/utils';

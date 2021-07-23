@@ -16,31 +16,34 @@ const { ExitCode } = require('./constants');
 
 const app = express();
 const logger = getLogger({name: 'api'});
-
-const PORT = process.env.NODE_ENV === 'production' ? process.env.PRODUCTION_PORT : 8000;
+const PORT = process.env.NODE_ENV === `production` ? process.env.PRODUCTION_PORT : 8000;
 const uriDb = process.env.CONNECTION_STRING;
-const CLIENT_URL = process.env.NODE_ENV === 'production' ? process.env.CLIENT_URL : process.env.PRODUCTION_CLIENT_URL;
+const CLIENT_URL = !process.env.NODE_ENV ? process.env.DEV_CLIENT_URL : process.env.PRODUCTION_CLIENT_URL;
+
+console.log(PORT);
+
 const allowedDomains = [
   `${CLIENT_URL}`,
   `${CLIENT_URL}/`,
+  `${CLIENT_URL}/login`,
   `${CLIENT_URL}/settings`,
   `${CLIENT_URL}/calculations`
 ];
 
 app.use(express.json());
 app.use(cookieParser());
-// app.use(cors({
-//   origin: (origin, callback) => {
-// 		if (!allowedDomains.includes(origin)) {
-// 			const msg = `Access denied`;
-// 			return callback(new Error(msg), false);
-// 		}
-// 		return callback(null, true);
-//   },
-//   methods: 'GET,HEAD,POST,PUT,PATCH,DELETE,OPTIONS',
-//   credentials: true,
-//   preflightContinue: false,
-// }));
+app.use(cors({
+  origin: (origin, callback) => {
+		if (!allowedDomains.includes(origin)) {
+			const msg = `Access denied`;
+			return callback(new Error(msg), false);
+		}
+		return callback(null, true);
+  },
+  methods: 'GET,HEAD,POST,PUT,PATCH,DELETE,OPTIONS',
+  credentials: true,
+  // preflightContinue: false,
+}));
 // Connect routes API
 app.use('/api/user', userRouter);
 app.use('/api/department', departmentRouter);

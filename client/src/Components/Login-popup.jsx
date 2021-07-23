@@ -12,7 +12,7 @@ import { onChangeFormValue, showComponent } from '../util/utils';
 import styles from '../styles/LoginPopup.module.css';
 import { ErrorMessage } from './Error-msg';
 
-export const LoginPopup = ({ popupClose }) => {
+export const LoginPopup = ({ isPopup, popupClose }) => {
   const dispatch = useDispatch();
   const authStatus = useSelector(getAuthenticatedStatus);
   const history = useHistory();
@@ -22,6 +22,8 @@ export const LoginPopup = ({ popupClose }) => {
     password: '',
   });
 
+  let { from } = location.state || { from: { pathname: "/" } };
+  
   const onLoginClick = async (evt) => {
     evt.preventDefault();
     dispatch(loginUser(loginForm));
@@ -29,20 +31,24 @@ export const LoginPopup = ({ popupClose }) => {
       login: '',
       password: '',
     });
-    let { from } = location.state || { from: { pathname: "/" } };
-    history.replace(from);
   };
 
   const authProcess = useSelector(getProcessAuthStatus);
   const errMessage = useSelector(getAuthError);
 
-  const activeSubmitBtn = !Boolean(loginForm.email) && !Boolean(loginForm.password) && (!authStatus);
+  const activeSubmitBtn = !Boolean(loginForm.login) && !Boolean(loginForm.password) && (!authStatus);
 
   useEffect(() => {
-    if (authStatus) {
+    if (authStatus && isPopup) {
       popupClose(false);
     }
-  }, [ authStatus, popupClose ]);
+  }, [ authStatus, popupClose, isPopup ]);
+
+  useEffect(() => {
+    if (authProcess === 'successed' && authStatus) {
+      history.replace(from);
+    }
+  }, [authProcess, authStatus, history, from]);
 
   return(
     <div>
@@ -73,15 +79,17 @@ export const LoginPopup = ({ popupClose }) => {
         />
 
         {
-          authProcess === 'loading' ? 
-            <Loading /> : 
-            ''
+          showComponent(
+            authProcess === 'loading', 
+            <Loading />
+          )
         }
 
         {
-          authProcess === 'failed' ?
-            <ErrorMessage errMessage={errMessage} /> :
-            ''
+          showComponent(
+            authProcess === 'failed',
+            <ErrorMessage errMessage={errMessage} />
+          )
         }
 
         {

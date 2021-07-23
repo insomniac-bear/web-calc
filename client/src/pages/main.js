@@ -21,7 +21,7 @@ export default function Main () {
         isOpenLogin,
         <Popup
           onBtnCloseClick={loginToggler}
-          content={<LoginPopup popupClose={loginToggler}/>}
+          content={<LoginPopup isPopup={true} popupClose={loginToggler}/>}
         />
       )}
       <Header

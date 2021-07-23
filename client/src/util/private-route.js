@@ -15,7 +15,7 @@ export const PrivateRoute = ({ children, ...rest }) => {
       render = {
         ({ location }) => ( isAuth ) ? (
           children
-        ) : (!authStatus && !localStorage.getItem('token')) ? (
+        ) : (!isAuth || authStatus === 'failed') ? (
           <Redirect
             to={{
               pathname: '/login',

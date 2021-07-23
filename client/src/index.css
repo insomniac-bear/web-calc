@@ -72,6 +72,10 @@ input[type="radio"].visually-hidden {
   padding-bottom: 40px;
 }
 
+.uppercase {
+  text-transform: uppercase;
+}
+
 @media(min-width: 768px) {
   .main {
     min-height: calc(100vh - 242px);
