@@ -1,12 +1,30 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { API_URL } from '../../util/const';
+
+export const saveDepartment = createAsyncThunk(
+  'newDepartment/save',
+  async (newDepartmentData) => {
+    const body = JSON.stringify({...newDepartmentData});
+    const response = await fetch(`${API_URL}/department/department`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+      body,
+    });
+    const data = await response.json();
+    return {
+      status: response.status,
+      data,
+    }
+  }
+);
 
 const initialState = {
   status: 'idle',
-  newDepartment: {
-    version: 0,
-    departmentName: '',
-    rates: [{}],
-  },
+  newDepartment: {},
   errors: null,
 };
 
@@ -28,6 +46,20 @@ const newDepartmentSlice = createSlice({
       console.log(action);
       state.newDepartment.rates[action.payload.index] = action.payload.value;
     },
+  },
+  extraReducers: {
+    // saveDepartment extra reducer
+    [saveDepartment.pending]: (state, action) => {
+      state.status = 'loading';
+    },
+    [saveDepartment.rejected]: (state, action) => {
+      state.status = 'failed';
+      state.errors = action.error.message;
+    },
+    [saveDepartment.fulfilled]: (state, action) => {
+      state.status = 'successed';
+      state.newDepartment = action.payload.data;
+    }
   },
 });
 

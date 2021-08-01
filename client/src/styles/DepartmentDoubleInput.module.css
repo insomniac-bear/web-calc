@@ -1,0 +1,85 @@
+.inputContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  margin-bottom: 25px;
+  padding: 0;
+
+  width: 383px;
+}
+
+.inputName {
+  margin: 0;
+  margin-right: 5px;
+  padding: 0;
+
+  width: 173px;
+
+  color: #676770;
+  font-size: 16px;
+  text-align: right;
+}
+
+.doubleInput {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  padding-left: 30px;
+
+  width: 90px;
+
+  border-top: none;
+  border-right: none;
+  border-bottom: 1px solid #000000;
+  border-left: none;
+}
+
+.doubleInputSecond {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  padding-left: 45px;
+
+  width: 120px;
+
+  border-top: none;
+  border-right: none;
+  border-bottom: 1px solid #000000;
+  border-left: none;
+}
+
+.doubleInput::placeholder,
+.doubleInputSecond::placeholder {
+  margin: 0;
+  padding: 0;
+
+  color:rgba(77, 182, 172, .5);
+  font-size: 16px;
+}
+
+.inputValueType {
+  position: absolute;
+  z-index: 10;
+  margin: 0;
+  padding: 0;
+
+  font-size: 16px;
+  color: #676770;
+
+  left: 182px;
+  top: center;
+}
+
+.inputValueTypeSecond {
+  position: absolute;
+  z-index: 10;
+  margin: 0;
+  padding: 0;
+
+  font-size: 16px;
+  color: #676770;
+
+  left: 265px;
+  top: center;
+}

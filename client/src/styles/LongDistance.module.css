@@ -1,0 +1,19 @@
+.distanceContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 0;
+
+  width: 776px;
+}
+
+.distanceWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 0;
+
+  width: 470px;
+}

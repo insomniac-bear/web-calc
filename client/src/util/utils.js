@@ -23,6 +23,10 @@ export const showComponent = (isShow, component) => {
   return isShow ? component : ``;
 };
 
+export const showAlterComponent = (condition, primaryComponent, alterComponent) => {
+  return condition ? primaryComponent : alterComponent;
+};
+
 export const onChangeFormValue = (evt, form, handler) => {
   handler({...form, [evt.target.name]: evt.target.value});
 };

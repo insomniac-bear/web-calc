@@ -13,6 +13,16 @@ class DepartmenController {
       next(err);
     }
   }
+
+  async saveDepartment (req, res, next) {
+    try {
+      const newDepartment = req.body;
+      const savedDepartment = await departmentService.saveDepartment(newDepartment);
+      return res.json(savedDepartment);
+    } catch (err) {
+      next(err);
+    }
+  }
 };
 
 module.exports = new DepartmenController();

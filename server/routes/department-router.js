@@ -10,4 +10,7 @@ const departmentRouter = new Router();
 // Rout for get all departments
 departmentRouter.get('/departments', departmentController.getDepartments);
 
+// Rout for save new department
+departmentRouter.post('/department', [authMiddleware], departmentController.saveDepartment);
+
 module.exports = departmentRouter;

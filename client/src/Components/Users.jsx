@@ -11,7 +11,7 @@ import { Popup } from './Popup';
 import { SettingsContainer } from './Settings-container';
 import { SettingsHeader } from "./Settings-header";
 import { SettingsTitle } from './Settings-title';
-// Functions for work with state
+// Functions for work with local state
 import { getCompanyId } from '../clientStore/authSlice/auth-sliice';
 import { loadUsers, getUsers, getProcessUsersLoading } from '../clientStore/usersSlice/user-slice';
 // Util functions

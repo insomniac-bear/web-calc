@@ -1,7 +1,10 @@
 // Third party libraries
 import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 // Components
+import { DepartmentRadiobuttons } from './Department-radiobuttons';
+import { DepartmentTitle } from './Department-title';
 import { Icon } from './Icon';
 import { RateFieldset } from './Rate-fieldset';
 // Utils
@@ -9,24 +12,73 @@ import { IconNames } from '../util/const';
 //Styles
 import styles from '../styles/DepartmentForm.module.css';
 
-export const Rates = ({ onAddRateBtnClick, rates, onChangeRateValue }) => {
+export const Rates = (props) => {
+  const {
+    rates,
+    setDepartmentFormValue,
+    lastTarget,
+    setLastTarget,
+  } = props;
+
   const [isSameRate, setSameRate] = useState(false);
   const [isSameTruck, setSameTruck] = useState(false);
 
+  const addRateBtnClick = (index, typeRate, isSameRate, isSameTruck) => {
+    const newRate = typeRate === 'extra' ? {
+      [`rateName${index}`]: '',
+      [`cashPayment${index}`]: isSameRate ? rates.ratesList[0].cashPayment0 : '',
+      [`cardPayment${index}`]: isSameRate ? rates.ratesList[0].cardPayment0 : '',
+      [`extraMover${index}`]: isSameRate ? rates.ratesList[0].extraMover0 : '',
+      [`extraTruck${index}`]: isSameTruck ? rates.ratesList[0].extraTruck0 : '',
+    } :
+    {
+      [`rateName${index}`]: '',
+      [`hourlyRate${index}`]: isSameRate ? rates.ratesList[0].hourlyRate0 : '',
+      [`cashDiscount${index}`]: isSameRate ? rates.ratesList[0].cashDiscount0 : '',
+      [`extraMover${index}`]: isSameRate ? rates.ratesList[0].extraMover0 : '',
+      [`extraTruck${index}`]: isSameTruck ? rates.ratesList[0].extraTruck0 : '',
+    };
+    setDepartmentFormValue('rates.ratesList', 'push', newRate);
+  };
+
+  const onChangeRateType = (evt) => {
+    const typeValue = evt.target.value === 'true' ? 'discount' : 'extra';
+
+    setDepartmentFormValue('rates.rateType', 'set', typeValue);
+    if (lastTarget) {
+      setLastTarget(undefined);
+    }
+  };
+
+  const setRatesValue = (evt, index) => {
+    setLastTarget(evt.target.name);
+    setDepartmentFormValue(`rates.ratesList.${index}.${evt.target.name}`, 'set', evt.target.value);
+  };
+
   return (
     <section>
-      <h3 className={styles.sectionName}>Rates</h3>
+      <DepartmentTitle title={'Rates'}/>
+      <DepartmentRadiobuttons
+        title={'Select type of rates calculation method'}
+        name={'rateType'}
+        isChecked={rates.rateType === 'discount'}
+        onChangeValue={onChangeRateType}
+        firstValue={'cash discount %'}
+        secondValue={'extra $/hr for card payment'}
+      />
       {
-        rates.map((rate, index) => {
+        rates.ratesList.map((rate, index) => {
           return <RateFieldset
+            key={nanoid(10)}
             rate={rate}
-            rateIndex={index}
+            rateType={rates.rateType}
+            index={index}
             isSameRate={isSameRate}
             isSameTruck={isSameTruck}
             setSameRate={setSameRate}
             setSameTruck={setSameTruck}
-            setRatesValue={onChangeRateValue}
-            key={nanoid(rates.length)}
+            setRatesValue={setRatesValue}
+            lastTarget={lastTarget}
           />
         })
       }
@@ -35,7 +87,7 @@ export const Rates = ({ onAddRateBtnClick, rates, onChangeRateValue }) => {
         onClick={
           (evt) => {
             evt.preventDefault();
-            onAddRateBtnClick()
+            addRateBtnClick(rates.ratesList.length, rates.rateType, isSameRate, isSameTruck);
           }
         }
       >
@@ -44,4 +96,11 @@ export const Rates = ({ onAddRateBtnClick, rates, onChangeRateValue }) => {
       </button>
     </section>
   );
+};
+
+Rates.propTypes = {
+  rates: PropTypes.object.isRequired,
+  setDepartmentFormValue: PropTypes.func.isRequired,
+  lastTarget: PropTypes.string,
+  setLastTarget: PropTypes.func.isRequired,
 };

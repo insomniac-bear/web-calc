@@ -17,6 +17,7 @@ export const PageHeaderBtns = ({ btns }) => {
             return <button
               key={nanoid(btns.length)}
               className={styles.btn}
+              onClick={(evt) => btn.onClick(evt)}
             >
               {btn.name}
             </button>

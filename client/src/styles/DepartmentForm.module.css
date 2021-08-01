@@ -1,6 +1,7 @@
 .form {
   margin: 0 auto;
   padding: 0;
+  padding-bottom: 70px;
 
   min-width: 320px;
   max-width: 940px;
@@ -49,36 +50,25 @@
   font-size: 16px;
 }
 
-.sectionName {
-  margin: 0;
-  margin-bottom: 10px;
-  padding-top: 0;
-  padding-right: 0;
-  padding-bottom: 5px;
-  padding-left: 10px;
-
-  color: #676770;
-  font-size: 24px;
-  text-transform: uppercase;
-
-  border-bottom: 1px solid #000000;
-}
-
 .inputGroup {
   margin: 0;
   padding: 0;
 
-  border: none;
+  border-top: 1px dotted #676770;
+  border-right: none;
+  border-bottom: none;
+  border-left: none;
 }
 
 .rateName {
   margin: 0;
   margin-bottom: 25px;
   margin-left: 30px;
-  padding: 0;
+  padding: 0 10px;
 
   color: 676770;
   font-size: 18px;
+  text-align: center;
   text-transform: uppercase;
 }
 
@@ -196,17 +186,6 @@
   padding: 0;
 }
 
-.decorateLine {
-  margin: 0 auto;
-  margin-bottom: 25px;
-  padding: 0;
-
-  width: 720px;
-  height: 1px;
-
-  background-color: #4db6ac;
-}
-
 .addRateBtn {
   display: flex;
   align-items: center;
@@ -229,19 +208,6 @@
 
   width: 25px;
   height: 25px;
-}
-
-.feeTypeSelect {
-  margin: 0;
-  margin-bottom: 20px;
-  padding: 5px 10px;;
-
-  width: 300px;
-
-  border-top: none;
-  border-right: none;
-  border-bottom: 1px solid #676770;
-  border-left: none;
 }
 
 .shuttleContainer {

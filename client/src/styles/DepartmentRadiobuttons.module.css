@@ -1,0 +1,27 @@
+.inputContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  margin-bottom: 25px;
+  padding: 0;
+
+  width: 383px;
+}
+
+.inputName {
+  margin: 0;
+  margin-right: 5px;
+  padding: 0;
+
+  width: 173px;
+
+  color: #676770;
+  font-size: 16px;
+  text-align: right;
+}
+
+.radiobtnContainer {
+  margin: 0;
+  padding: 0;
+}

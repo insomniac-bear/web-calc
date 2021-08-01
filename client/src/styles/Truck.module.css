@@ -1,0 +1,29 @@
+.feeTypeSelect {
+  margin: 0;
+  margin-bottom: 20px;
+  padding: 5px 10px;;
+
+  width: 300px;
+
+  border-top: none;
+  border-right: none;
+  border-bottom: 1px solid #676770;
+  border-left: none;
+}
+
+.fieldName {
+  margin: 0;
+  margin-right: 25px;
+  padding: 0;
+
+  color: #676770;
+  font-size: 16px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
