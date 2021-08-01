@@ -4,7 +4,7 @@ const departmentService = require('../service/department-service');
 class DepartmenController {
   async getDepartments (req, res, next) {
     try {
-      const { companyId } = req.body;
+      const companyId = req.user.companyId;
       const departments = await departmentService.getDepartments(companyId);
       return res
         .status(StatusCodes.OK)

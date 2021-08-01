@@ -1,6 +1,7 @@
 // Third paty libraries
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 //Components
 import { DepartmentForm } from '../Components/Department-form';
@@ -10,7 +11,7 @@ import { LoginPopup } from '../Components/Login-popup';
 import { PageHeader } from '../Components/Page-header';
 // Functions for work with local state
 import { getUserId, getCompanyId } from '../clientStore/authSlice/auth-sliice';
-import { saveDepartment } from '../clientStore/newDepartmentSlice/newDepartment-slice';
+import { saveDepartment, getDepartmentStatus, setDepartmentStatus } from '../clientStore/newDepartmentSlice/newDepartment-slice';
 // DataModel
 import { departmentDataModel } from '../models/department';
 //Utils functions
@@ -18,8 +19,10 @@ import { IconNames, showComponent } from '../util/utils';
 
 export default function DepartmentAdd () {
   const dispatch = useDispatch();
+  const history = useHistory();
   const userId = useSelector(getUserId);
   const companyId = useSelector(getCompanyId);
+  const savedStatus = useSelector(getDepartmentStatus);
 
   const [formValue, setFormValue] = useState({
     ...departmentDataModel,
@@ -46,9 +49,17 @@ export default function DepartmentAdd () {
     },
     {
       name: 'Cancel',
-      onClick: () => {console.log('Click on Cancel btn')}
+      onClick: () => {history.replace('/settings')}
     }
   ];
+
+  useEffect(() => {
+    if (savedStatus === 'successed') {
+      dispatch(setDepartmentStatus({ status: 'idle' }));
+      history.replace('/settings');
+    }
+  }, [ savedStatus, history, dispatch ]);
+
   return(
     <div className='container'>
       {showComponent(isLoginPopup, <LoginPopup onBtnCloseClick={loginPopupToggle}/>)}

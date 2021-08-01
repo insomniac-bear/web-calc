@@ -7,11 +7,6 @@ const departmentSchema= new Schema(
       required: true,
       unique: true,
     },
-    dateCreate: {
-      type: Date,
-      required: true,
-      default: Date.now,
-    },
     authorId: {
       type: Types.ObjectId,
       required: true,

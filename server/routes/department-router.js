@@ -8,7 +8,7 @@ const { authMiddleware } = require('../middleware/auth-middleware');
 const departmentRouter = new Router();
 
 // Rout for get all departments
-departmentRouter.get('/departments', departmentController.getDepartments);
+departmentRouter.get('/departments', [authMiddleware], departmentController.getDepartments);
 
 // Rout for save new department
 departmentRouter.post('/department', [authMiddleware], departmentController.saveDepartment);

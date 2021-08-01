@@ -32,19 +32,9 @@ const newDepartmentSlice = createSlice({
   name: 'newDepartment',
   initialState,
   reducers: {
-    addNewRate: {
-      reducer(state, action) {
-        state.newDepartment.rates.push(action.payload);
-      },
-      prepare() {
-        return {
-          payload: {}
-        }
-      },
-    },
-    changeRateName(state, action) {
-      console.log(action);
-      state.newDepartment.rates[action.payload.index] = action.payload.value;
+    setDepartmentStatus (state, action) {
+      const { status } = action.payload;
+      state.status = status;
     },
   },
   extraReducers: {
@@ -63,9 +53,8 @@ const newDepartmentSlice = createSlice({
   },
 });
 
-export const { addNewRate, changeRateName } = newDepartmentSlice.actions;
+export const { setDepartmentStatus } = newDepartmentSlice.actions;
 
 export default newDepartmentSlice.reducer;
 
-export const getRates = (state) => state.newDepartment.newDepartment.rates;
-export const getFirstRate = (state) => state.newDepartment.newDepartment.rates[0];
+export const getDepartmentStatus = (state) => state.newDepartment.status;

@@ -40,6 +40,7 @@ export const DepartmentForm = ({ formValue, setFormValue }) => {
             value={formValue.departmentName}
             onChange={(evt) => onFormValueChange(evt.target.name, 'set', evt.target.value)}
             onFocus={clearLastTarget}
+            required
           />
         </div>
         <div>

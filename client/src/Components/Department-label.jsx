@@ -37,6 +37,7 @@ export const DepartmentLabel = (props) => {
         value={value}
         onChange={changeValue}
         autoFocus={isFocused}
+        required
       />
     </label>
   );

@@ -6,15 +6,15 @@ class DepartmentService {
       throw new Error('Access denied');
     }
 
-    return await Department.find({ compnyId });
+    return await Department.find({ companyId }, {'departmentName': 1});
   }
 
   async saveDepartment(newDepartment) {
-    const name = newDepartment.departmentName;
-    const candidate = await Department.findOne({ name });
+    const departmentName = newDepartment.departmentName;
+    const candidate = await Department.findOne({ departmentName });
     
     if (candidate) {
-      throw new Error(`Department ${name} already exist`);
+      throw new Error(`Department ${departmentName} already exist`);
     }
 
     const savedDepartment = await Department.create(newDepartment);

@@ -22,7 +22,7 @@ class UserService {
     }
 
     const hashedPassword = await bcrypt.hash(password, SALT);
-    const user = await User.create({login, password: hashedPassword, role, companyId});
+    const user = await User.create({ login, password: hashedPassword, role, companyId });
     const userDTO = new UserDTO(user);
     const tokens = tokenService.generateTokens({ ...userDTO });
     await tokenService.saveToken(userDTO.id, tokens.refreshToken);
@@ -51,6 +51,7 @@ class UserService {
     }
 
     const userDTO = new UserDTO(user);
+    console.log(userDTO);
     const tokens = tokenService.generateTokens({ ...userDTO });
 
     await tokenService.saveToken(userDTO.id, tokens.refreshToken);
@@ -89,6 +90,7 @@ class UserService {
       throw new Error('Unauthorized error');
     }
 
+    tokenService.removeToken(refreshToken);
     const user = await User.findById(userData.id);
     const userDTO = new UserDTO(user);
     const tokens = tokenService.generateTokens({ ...userDTO });

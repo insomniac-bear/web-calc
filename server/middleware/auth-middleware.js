@@ -2,10 +2,6 @@ const { StatusCodes } = require('http-status-codes');
 const tokenService = require('../service/token-service');
 
 module.exports.authMiddleware = (req, res, next) => {
-  // if (req.method === 'OPTIONS') {
-  //   return next();
-  // }
-
   try {
     const authorizationHeader = req.headers.authorization;
     if (!authorizationHeader) {

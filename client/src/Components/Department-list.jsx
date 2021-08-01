@@ -14,7 +14,7 @@ export const DepatrmentList = ({departments}) => {
               <div className={styles.iconContainer}>
                 <Icon name={IconNames.DEPARTMENTS}/>
               </div>
-              {it.name}
+              {it.departmentName}
             </a>
           </li>
         );
