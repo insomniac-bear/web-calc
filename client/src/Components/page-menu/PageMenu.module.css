@@ -69,7 +69,7 @@
   fill: #ffffff;
 }
 
-@media(min-width: 400px) {
+@media(min-width: 500px) {
   .list {
     display: flex;
   }

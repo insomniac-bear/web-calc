@@ -5,7 +5,7 @@ import { SiteMenu } from '../Components/Site-menu';
 // Styles
 import styles from '../styles/Header.module.css';
 
-export const Header = ({ onLoginClick, isLoginBtnShow }) => {
+export const Header = ({ isLoginBtnShow }) => {
   const [isMenu, toggleMenu] = useState(false);
 
   return(
@@ -13,7 +13,6 @@ export const Header = ({ onLoginClick, isLoginBtnShow }) => {
       <SiteMenu
         isMobileOpen={isMenu}
         onBtnClick={toggleMenu}
-        onLoginClick={onLoginClick}
         isLoginBtnShowed={isLoginBtnShow}
       />
       <h1 className={styles.title}> Estimates calculator</h1>

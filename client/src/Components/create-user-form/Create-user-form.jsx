@@ -2,15 +2,15 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // State functions
-import { loadCompany, getCompany } from '../clientStore/companySlice/company-slice';
-import { getCompanyId } from '../clientStore/authSlice/auth-sliice';
-import { saveUser } from '../clientStore/usersSlice/user-slice';
+import { loadCompany, getCompany } from '../../clientStore/companySlice/company-slice';
+import { getCompanyId } from '../../clientStore/authSlice/auth-sliice';
+import { saveUser } from '../../clientStore/usersSlice/user-slice';
 // Util functions
-import { onChangeFormValue } from '../util/utils';
+import { onChangeFormValue } from '../../util/utils';
 // Styles
-import styles from '../styles/CreateUserPopup.module.css';
+import styles from './CreateUserForm.module.css';
 
-export const CreateUserPopup = () => {
+export const CreateUserForm = () => {
   const dispatch = useDispatch();
 
   const companyId = useSelector(getCompanyId);

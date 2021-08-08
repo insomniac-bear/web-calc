@@ -1,19 +1,17 @@
 // Third party libraries
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Redirect
 } from 'react-router-dom';
 // Components
 import Authorization from './pages/authorization';
-import DepartmentAdd from './pages/departmentadd';
 import Main from './pages/main';
-import Settings from './pages/settings';
+import Departments from './pages/departments';
 // Store function
-import { checkAuth } from './clientStore/authSlice/auth-sliice';
+import { checkAuth, getUserName } from './clientStore/authSlice/auth-sliice';
 // Util functions
 import { PrivateRoute } from './util/private-route';
 
@@ -25,6 +23,8 @@ function App() {
       dispatch(checkAuth());
     }
   }, [ dispatch ]);
+
+  const userName = useSelector(getUserName);
 
   return (
     <div className="container">
@@ -48,18 +48,10 @@ function App() {
 * ---------- Private routing in the App ----------
 */}
           <PrivateRoute
-            exact
-            path='/settings'
+            path='/departments'
           >
-            <Settings />    
+            <Departments userName={userName} />    
           </PrivateRoute>
-          <PrivateRoute
-            exact
-            path='/departmentadd'
-          >
-            <DepartmentAdd />
-          </PrivateRoute>
-          <Redirect to='/'/>
         </Switch>
       </Router>
     </div>

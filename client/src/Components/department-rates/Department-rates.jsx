@@ -3,16 +3,16 @@ import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 // Components
-import { DepartmentRadiobuttons } from './Department-radiobuttons';
-import { DepartmentTitle } from './Department-title';
-import { Icon } from './Icon';
-import { RateFieldset } from './Rate-fieldset';
+import { DepartmentRadiobuttons } from '../Department-radiobuttons';
+import { DepartmentTitle } from '../Department-title';
+import { Icon } from '../Icon';
+import { RateFieldset } from '../Rate-fieldset';
 // Utils
-import { IconNames } from '../util/const';
+import { IconNames } from '../../util/const';
 //Styles
-import styles from '../styles/DepartmentForm.module.css';
+import styles from './DepartmentRates.module.css';
 
-export const Rates = (props) => {
+export const DepartmentRates = (props) => {
   const {
     rates,
     setDepartmentFormValue,
@@ -98,7 +98,7 @@ export const Rates = (props) => {
   );
 };
 
-Rates.propTypes = {
+DepartmentRates.propTypes = {
   rates: PropTypes.object.isRequired,
   setDepartmentFormValue: PropTypes.func.isRequired,
   lastTarget: PropTypes.string,

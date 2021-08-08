@@ -1,25 +1,25 @@
 // Third party libraries
+import { Link } from 'react-router-dom';
 import { nanoid } from 'nanoid';
 // Components
-import { Icon } from './Icon';
+import { Icon } from '../Icon';
 // Styles
-import styles from '../styles/PageMenu.module.css';
+import styles from './PageMenu.module.css';
 
-export const PageMenu = ({ activeItem, menuItems, toggleMenu }) => {
+export const PageMenu = ({ menuItems }) => {
   const items = []
   for(let key in menuItems) {
     items.push(
       <li className={styles.item} key={nanoid(10)}>
-        <button
-          className={menuItems[key] === activeItem ? styles.activeBtn : styles.btn}
-          disabled={menuItems[key] === activeItem}
-          onClick={() => toggleMenu(menuItems[key])}
+        <Link
+          className={styles.btn}
+          to={`/${key.toLowerCase()}`}
         >
           <div className={styles.iconContainer}>
             <Icon name={menuItems[key]} />
           </div>
           {menuItems[key]}
-        </button>
+        </Link>
       </li>
     );
   };

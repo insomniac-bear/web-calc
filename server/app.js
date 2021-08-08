@@ -86,6 +86,7 @@ async function start() {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
+      useFindAndModify: false,
     });
     // Listen port
     app.listen(PORT, () => logger.info(chalk.green(`Server API has been started on port ${ PORT }`)));

@@ -19,5 +19,7 @@ export const HttpCode = {
   INTERNAL_SERVER_ERROR: 500,
 }
 
+export const LIMIT_DATA = 5;
+
 // export const API_URL = 'http://localhost:8000/api';
 export const API_URL = '/api';

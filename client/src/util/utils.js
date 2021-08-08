@@ -1,3 +1,5 @@
+import { API_URL } from './const';
+
 export const IconNames = {
   CALCULATIONS: 'Calculations',
   DEPARTMENTS: 'Departments',
@@ -7,6 +9,7 @@ export const IconNames = {
   SETTINGS: 'Settings',
   TRIANGLE: 'Triangle',
   USER: 'User',
+  USERS: 'Users',
   LOGOUT: 'Logout',
 };
 
@@ -29,4 +32,24 @@ export const showAlterComponent = (condition, primaryComponent, alterComponent) 
 
 export const onChangeFormValue = (evt, form, handler) => {
   handler({...form, [evt.target.name]: evt.target.value});
+};
+
+export const fetchedData = async (url, method, sendData = null) => {
+  const body = sendData ? JSON.stringify(sendData) : null;
+
+  const response = await fetch(`${API_URL}/${url}`, {
+    method,
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+    body
+  });
+  const data = await response.json();
+
+  return {
+    status: response.status,
+    data
+  };
 };

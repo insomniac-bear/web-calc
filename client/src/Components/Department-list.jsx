@@ -1,24 +1,20 @@
 // Components
-import { Icon } from './Icon';
-import { IconNames } from '../util/utils';
-// Styles
-import styles from '../styles/DepartmentsList.module.css';
+import { Table } from './Table';
+import { TableBody } from './Table-body';
+import { TableHeader } from './Table-header';
 
-export const DepatrmentList = ({departments}) => {
+export const DepatrmentList = ({ departments }) => {
+  const headerTitles = {
+    firstColumn: 'Department Name',
+    secondColumn: 'Author',
+    thirdColumn: 'Created Date',
+    fourthColumn: 'Updated Date',
+  };
+
   return(
-    <ul className={styles.container}>
-      {departments.map((it) => {
-        return(
-          <li className={styles.item} key={it.id}>
-            <a href='/' className={styles.departmentLink}>
-              <div className={styles.iconContainer}>
-                <Icon name={IconNames.DEPARTMENTS}/>
-              </div>
-              {it.departmentName}
-            </a>
-          </li>
-        );
-      })}
-    </ul>
+    <Table>
+      <TableHeader headerTitles={headerTitles} />
+      <TableBody tableData={departments} />
+    </Table>
   );
 };

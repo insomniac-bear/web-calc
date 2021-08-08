@@ -25,6 +25,7 @@ const userSchema = new Schema(
     },
     companyId: {
       type: Types.ObjectId,
+      ref: 'Company',
       required: true,
     },
   },

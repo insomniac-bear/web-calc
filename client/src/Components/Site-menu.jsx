@@ -1,12 +1,13 @@
+// Third party libraries
+import { Link } from 'react-router-dom';
 // Components
-import { LoginBtn } from './Login-btn';
 import { LogoutBtn } from './Logout-btn';
 import { showComponent } from '../util/utils';
 // Styles
 import styles from '../styles/SiteMenu.module.css';
 
 export const SiteMenu = (props) => {
-  const { isMobileOpen, onBtnClick, onLoginClick, isLoginBtnShowed } = props;
+  const { isMobileOpen, onBtnClick, isLoginBtnShowed } = props;
   const mobileMenuClass = isMobileOpen ? styles.containerOn : styles.container;
 
   return(
@@ -16,7 +17,9 @@ export const SiteMenu = (props) => {
           showComponent(
             isLoginBtnShowed,
             <li className={styles.item}>
-              <LoginBtn onLoginClick={onLoginClick} />
+              <Link to='/login' className={styles.link}>
+                Login
+              </Link>
             </li>
           )
         }

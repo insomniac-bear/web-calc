@@ -133,3 +133,4 @@ export const getAuthError = (state) => state.auth.errors;
 export const getCompanyId = (state) => state.auth.user.companyId;
 export const getUserId = (state) => state.auth.user.id;
 export const getUserRole = (state) => state.auth.user.role;
+export const getUserName = (state) => state.auth.user.login;

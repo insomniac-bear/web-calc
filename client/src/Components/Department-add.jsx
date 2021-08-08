@@ -61,24 +61,24 @@ export default function DepartmentAdd () {
   }, [ savedStatus, history, dispatch ]);
 
   return(
-    <div className='container'>
-      {showComponent(isLoginPopup, <LoginPopup onBtnCloseClick={loginPopupToggle}/>)}
-      <Header
-        onLoginClick={loginPopupToggle}
-        isLoginBtnShow={false}
-      />
-      <main className='main'>
-        <PageHeader
-          titleIcon={IconNames.PENCIL}
-          title={'Add department'}
-          btns={settingsHeaderBtns}
-        />
+    // <div className='container'>
+    //   {showComponent(isLoginPopup, <LoginPopup onBtnCloseClick={loginPopupToggle}/>)}
+    //   <Header
+    //     onLoginClick={loginPopupToggle}
+    //     isLoginBtnShow={false}
+    //   />
+    //   <main className='main'>
+    //     <PageHeader
+    //       titleIcon={IconNames.PENCIL}
+    //       title={'Add department'}
+    //       btns={settingsHeaderBtns}
+    //     />
         <DepartmentForm
           formValue={formValue}
           setFormValue={setFormValue}
         />
-      </main>
-      <Footer />
-    </div>
+    //   </main>
+    //   <Footer />
+    // </div>
   );
 };

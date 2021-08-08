@@ -3,7 +3,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './authSlice/auth-sliice';
 import companyReducer from './companySlice/company-slice';
 import departmentListReducer from './departmentsSlice/departments-slice';
-import newDepartmentReducer from './newDepartmentSlice/newDepartment-slice'
+import departmentReducer from './departmentSlice/department-slice'
 import usersReducer from './usersSlice/user-slice';
 
 export default configureStore({
@@ -11,7 +11,7 @@ export default configureStore({
     auth: authReducer,
     company: companyReducer,
     departmentList: departmentListReducer,
-    newDepartment: newDepartmentReducer,
+    department: departmentReducer,
     users: usersReducer,
   }
 });

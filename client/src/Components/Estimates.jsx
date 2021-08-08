@@ -9,10 +9,12 @@ const ESTIMATES_LINKS = [
   {
     name: 'settings',
     description: 'Parameters settings',
+    link: '/departments',
   },
   {
     name: 'Calculator',
     description: 'Customizable calculator',
+    link: '/calculator',
   }
 ];
 
@@ -25,8 +27,7 @@ export const Estimates = () => {
           return (
             <li className={styles.item} key={nanoid(ESTIMATES_LINKS.length)}>
               <MainLink
-                name={item.name}
-                description={item.description}
+                linkData={item}
               />
             </li>
         )})}

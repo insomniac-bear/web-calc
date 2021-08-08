@@ -1,0 +1,24 @@
+.addRateBtn {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin: 0 auto;
+  padding: 5px;
+
+  color: #676770;
+  font-size: 18px;
+  text-transform: uppercase;
+
+  background-color: inherit;
+
+  border: 1px solid #30AD64;
+  border-radius: 5px;
+}
+
+.addRateBtn svg {
+  margin-right: 10px;
+
+  width: 25px;
+  height: 25px;
+}
+

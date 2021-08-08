@@ -4,16 +4,15 @@ import { Icon } from './Icon';
 // Styles
 import styles from '../styles/MainLink.module.css';
 
-export const MainLink = ({name, description}) => {
-  const link = `/${name}`;
-  const iconName = name === 'Calculator' ? 'Calculations' : `${name[0].toUpperCase()}${name.slice(1)}`;
+export const MainLink = ({ linkData }) => {
+  const iconName = linkData.name === 'Calculator' ? 'Calculations' : `Settings`;
   return(
-    <Link to={link} className={styles.link}>
+    <Link to={linkData.link} className={styles.link}>
       <div className={styles.decorateBlock}>
         <Icon name={iconName}/>
       </div>
-      <h3 className={styles.title}>{name}</h3>
-      <p className={styles.text}>{description}</p>
+      <h3 className={styles.title}>{linkData.name}</h3>
+      <p className={styles.text}>{linkData.description}</p>
     </Link>
   );
 };

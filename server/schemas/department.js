@@ -7,12 +7,18 @@ const departmentSchema= new Schema(
       required: true,
       unique: true,
     },
+    version: {
+      type: Number,
+      required: true,
+    },
     authorId: {
       type: Types.ObjectId,
+      ref: 'User',
       required: true,
     },
     companyId: {
       type: Types.ObjectId,
+      ref: 'Company',
       required: true,
     },
     rates: {
