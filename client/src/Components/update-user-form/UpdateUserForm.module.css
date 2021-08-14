@@ -1,0 +1,183 @@
+.form {
+  margin-top: 0;
+  margin-right: auto;
+  margin-bottom: 0;
+  margin-left: auto;
+  padding: 0;
+
+  width: 240px;
+}
+
+.title {
+  margin: 0;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  padding: 0;
+
+  text-align: center;
+}
+
+.field {
+  display: block;
+  margin: 0;
+  margin-bottom: 10px;
+  padding-top: 5px;
+  padding-right: 15px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+
+  width: 100%;
+
+  border-top: none;
+  border-right: none;
+  border-bottom: 1px solid #000000;
+  border-left: none;
+
+  color: #30ad64;
+  font-size: 16px;
+}
+
+.errorField {
+  display: block;
+  margin: 0;
+  margin-bottom: 10px;
+  padding-top: 5px;
+  padding-right: 15px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+
+  width: 100%;
+
+  border-top: none;
+  border-right: none;
+  border-bottom: 1px solid #ff0000;
+  border-left: none;
+
+  color: #30ad64;
+  font-size: 16px;
+}
+
+.field:last-child {
+  margin-bottom: 0;
+}
+
+.field::placeholder {
+  color: #4db6ac;
+  opacity: 50%;
+}
+
+.errorField::placeholder {
+  color: #ff0000;
+  opacity: .5;
+}
+
+.label {
+  display: block;
+  margin: 0;
+  margin-bottom: 10px;
+  padding: 0;
+}
+
+.labelTxt {
+  display: block;
+  margin: 0;
+  margin-bottom: 5px;
+  padding: 0;
+
+  color: #676770;
+  font-size: 16px;
+}
+
+.select {
+  display: block;
+  margin: 0;
+  padding-top: 5px;
+  padding-right: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+
+  color: #4db6ac;
+  font-size: 16px;
+
+  width: 100%;
+
+  border-top: none;
+  border-right: none;
+  border-bottom: 1px solid #000000;
+  border-left: none;
+}
+
+.btnSubmit {
+  display: block;
+  margin-top: 30px;
+  margin-right: auto;
+  margin-bottom: 0;
+  margin-left: auto;
+
+  padding-top: 10px;
+  padding-right: 30px;
+  padding-bottom: 10px;
+  padding-left: 30px;
+
+  cursor: pointer;
+
+  background-color: #30ad64;
+  border: none;
+  border-radius: 4px;
+
+  color: #ffffff;
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.btnSubmit:hover {
+  box-shadow: 2px 2px 2px 0 #000000;
+}
+
+.btnSubmit:disabled {
+  background-color: rgba(128, 128, 128, 0.5);
+}
+
+.btnSubmit:disabled:hover {
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.btnSubmit:last-child {
+  margin-top: 10px;
+}
+
+.changePasswordBtn {
+  display: block;
+  margin: 0 auto;
+  padding: 0;
+
+  border: none;
+  background-color: inherit;
+
+  cursor: pointer;
+
+  color: #676770;
+  font-size: 16px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.changePasswordBtn:hover {
+  color: #30ad64;
+}
+
+@media(min-width: 768px) {
+  .form {
+    width: 300px;
+  }
+
+  .field {
+    margin-bottom: 30px;
+  }
+
+  .btnSubmit {
+    margin-top: 60px;
+  }
+}

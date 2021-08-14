@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 // Components
 import { BtnSubmit } from '../btn-submit/Btn-submit';
-import { ErrorMessage } from '../Error-msg';
-import { Loading } from '../Loading';
+import { ErrorMessage } from '../error-msg/Error-msg';
+import { Loading } from '../loading/Loading';
 // Methods for work with client store
 import { loginUser, getAuthenticatedStatus, getProcessAuthStatus, getAuthError } from '../../clientStore/authSlice/auth-sliice';
 // Util functions

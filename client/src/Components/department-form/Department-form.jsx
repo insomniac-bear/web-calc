@@ -6,11 +6,11 @@ import { nanoid } from 'nanoid';
 import * as immutable from 'object-path-immutable';
 // Components
 import { BtnSubmit } from '../btn-submit/Btn-submit';
-import { ExtraOptions } from '../Extra-options';
-import { LongDistance } from '../Long-distance';
-import { Packing } from '../Packing';
+import { ExtraOptions } from '../extra-options/Extra-options';
+import { LongDistance } from '../long-distance/Long-distance';
+import { Packing } from '../packing/Packing';
 import { DepartmentRates } from '../department-rates/Department-rates';
-import { Truck } from '../Truck';
+import { Truck } from '../truck/Truck';
 // Functions for work with local state
 import { getUserId, getCompanyId } from '../../clientStore/authSlice/auth-sliice';
 import {

@@ -1,47 +1,5 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { API_URL } from '../../util/const';
-
-export const loadUsers = createAsyncThunk(
-  'users/getUsers',
-  async (companyId) => {
-    const body = JSON.stringify({ companyId });
-    const response = await fetch(`${API_URL}/user/users`, {
-      method: 'POST',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
-      },
-      body
-    });
-    const data = await response.json();
-    return {
-      status: response.status,
-      data,
-    }
-  }
-);
-
-export const saveUser = createAsyncThunk(
-  'users/saveUser',
-  async (newUserData) => {
-    const body = JSON.stringify({...newUserData});
-    const response = await fetch(`${API_URL}/user/registration`, {
-      method: 'POST',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
-      },
-      body,
-    });
-    const data = await response.json();
-    return {
-      status: response.status,
-      data,
-    }
-  }
-);
+import { createSlice } from '@reduxjs/toolkit';
+import { loadUsers, saveUser } from './users-async-thunk';
 
 const initialState = {
   status: 'idle',
@@ -52,6 +10,12 @@ const initialState = {
 const usersSlice = createSlice({
   name: 'users',
   initialState,
+  reducers: {
+    setUsersLoadingProcess (state, action) {
+      const { status } = action.payload;
+      state.status = status;
+    },
+  },
   extraReducers: {
     // getUsers extra reducer
     [loadUsers.pending]: (state, action) => {
@@ -75,11 +39,13 @@ const usersSlice = createSlice({
     },
     [saveUser.fulfilled]: (state, action) => {
       state.status = 'successed';
-      loadUsers();
+      state.errors = action.payload;
     },
   },
 });
-//
+
+export const { setUsersLoadingProcess } = usersSlice.actions;
+
 export default usersSlice.reducer;
 
 export const getProcessUsersLoading = (state) => state.users.status;

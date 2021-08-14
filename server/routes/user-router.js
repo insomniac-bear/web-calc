@@ -18,9 +18,18 @@ userRouter.post(`/logout`, userController.logout);
 userRouter.get('/refresh', userController.refresh);
 
 // Route for get all users
-userRouter.post('/users', [ authMiddleware ], userController.getUsers);
+userRouter.post('/users', [ authMiddleware, roleCheckMiddleware ], userController.getUsers);
 
 // Route for create user
-userRouter.post('/registration', [ authMiddleware ], userController.registration);
+userRouter.post('/registration', [ authMiddleware, roleCheckMiddleware ], userController.registration);
+
+// Route for get user with id
+userRouter.post('/user', [ authMiddleware, roleCheckMiddleware ], userController.getUser);
+
+// Route for update user with id
+userRouter.patch('/user', [ authMiddleware, roleCheckMiddleware ], userController.updateUser);
+
+// Route for delete user with id
+userRouter.delete('/user', [ authMiddleware, roleCheckMiddleware ], userController.deleteUser);
 
 module.exports = userRouter;

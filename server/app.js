@@ -23,9 +23,6 @@ const CLIENT_URL = !process.env.NODE_ENV ? process.env.DEV_CLIENT_URL : process.
 // const allowedDomains = [
 //   `${CLIENT_URL}`,
 //   `${CLIENT_URL}/`,
-//   `${CLIENT_URL}/login`,
-//   `${CLIENT_URL}/settings`,
-//   `${CLIENT_URL}/calculations`
 // ];
 
 app.use(express.json());

@@ -3,10 +3,10 @@ import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 // Components
-import { DepartmentRadiobuttons } from '../Department-radiobuttons';
-import { DepartmentTitle } from '../Department-title';
+import { DepartmentRadiobuttons } from '../department-radiobuttons/Department-radiobuttons';
+import { DepartmentTitle } from '../department-title/Department-title';
 import { Icon } from '../Icon';
-import { RateFieldset } from '../Rate-fieldset';
+import { RateFieldset } from '../rate-fieldset/Rate-fieldset';
 // Utils
 import { IconNames } from '../../util/const';
 //Styles

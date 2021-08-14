@@ -1,29 +1,28 @@
 // Third party libraries
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import {
-//  BrowserRouter as Router,
   Switch,
   Route,
   useRouteMatch
 } from 'react-router-dom';
 // Components
-// import { Calculations } from '../Components/Calculations';
-import { DepartmentEdit } from '../Components/Department-edit';
+import { DepartmentEdit } from '../Components/department-edit/Department-edit';
 import { DepartmentForm } from '../Components/department-form/Department-form';
 import { DepartmentsMain } from '../Components/departments-main/Departments-main';
-import { Footer } from '../Components/Footer';
-import { Header } from '../Components/Header';
-import { PageHeader } from '../Components/Page-header';
+import { Footer } from '../Components/footer/Footer';
+import { Header } from '../Components/header/Header';
+import { PageHeader } from '../Components/page-header/Page-header';
 import { PageMenu } from '../Components/page-menu/Page-menu';
-// import { Users } from '../Components/Users';
 // Functions for work with state
-import { getUserRole } from '../clientStore/authSlice/auth-sliice';
+import { getUserRole, checkAuth } from '../clientStore/authSlice/auth-sliice';
 //Utils functions
 import { IconNames } from '../util/utils';
 import { PrivateRoute } from '../util/private-route';
 
 
-export default function Departments({ userName }) {
+export const Departments = ({ userName }) => {
+  const dispatch = useDispatch();
   const { path } = useRouteMatch();
   const userRole = useSelector(getUserRole);
   const SectionNames = (userRole === 'admin') ? {
@@ -35,12 +34,17 @@ export default function Departments({ userName }) {
     calculations: 'Calculations',
   };
 
-
   const settingsHeaderBtn = [
     {
       name: 'Change password'
     }
-  ]
+  ];
+
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      dispatch(checkAuth());
+    }
+  }, [ dispatch ]);
 
   return(
     <div className='container'>

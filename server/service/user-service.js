@@ -1,4 +1,5 @@
 const bcrypt = require('bcryptjs');
+const { StatusCodes } = require('http-status-codes');
 const UserDTO = require('../dto/user-dto');
 const User = require('../schemas/user');
 const tokenService = require('../service/token-service');
@@ -18,18 +19,23 @@ class UserService {
     const candidate = await User.findOne({ login });
 
     if (candidate) {
-      throw new Error('This login is already in use');
+      return {
+        status: StatusCodes.BAD_REQUEST,
+        message: `Login ${login} is already in use`,
+        data: {},
+      }
     }
 
     const hashedPassword = await bcrypt.hash(password, SALT);
     const user = await User.create({ login, password: hashedPassword, role, companyId });
     const userDTO = new UserDTO(user);
-    const tokens = tokenService.generateTokens({ ...userDTO });
-    await tokenService.saveToken(userDTO.id, tokens.refreshToken);
 
     return {
-      ...tokens,
-      user: userDTO,
+      status: StatusCodes.OK,
+      message: `User with login ${login} was create`,
+      data: {
+        user: userDTO,
+      }
     }
   }
 
@@ -110,9 +116,92 @@ class UserService {
     if (!companyId) {
       throw new Error('Bad request');
     }
-    const users = await User.find({ companyId }, {'login': 1, 'createdAt': 1});
+    const users = await User.find({ companyId, role: {$ne: 'admin'} }, {'login': 1, 'role': 1,'createdAt': 1});
     return users;
   }
-};
+
+  /**********************************************************************
+   * @method GetUserWithId - method for get user with id from database
+   * @param {String} userId - id of search user
+   * @returns {Object} status, message, data - found user
+   */
+  async getUserWithId(userId) {
+    if (!userId) {
+      throw new Error('Invalid data');
+    }
+
+    const candidate = await User.findById({ _id: userId }, {'login': 1, 'role': 1});
+
+    if (!candidate) {
+      return {
+        status: StatusCodes.BAD_REQUEST,
+        message: `User not found`,
+        data: {},
+      };
+    }
+
+    return {
+      status: StatusCodes.OK,
+      message: 'success',
+      data: {
+        user: candidate
+      },
+    }
+  }
+
+  /**
+   * @method updateUser - method for update user with id
+   * @param {String} userId - id of user who is update
+   * @param {Object} data - new data of user
+   * @returns {Object}
+   */
+  async updateUser(userId, data) {
+    const candidate = await User.findById({ _id: userId });
+
+    if (!candidate) {
+      return {
+        status: StatusCodes.BAD_REQUEST,
+        message: `User not found`,
+        data: {},
+      };
+    }
+
+    if ('password' in data) {
+      const hashedPassword = await bcrypt.hash(data.password, SALT);
+      data = { ...data, password: hashedPassword };
+    }
+
+    const updatedUser = await User.updateOne({_id: userId}, { ...data });
+    return {
+      status: StatusCodes.OK,
+      message: 'success',
+      data: {
+        user: updatedUser,
+      },
+    }
+  }
+
+  /**
+   * @method deleteUser - method for delete user wth id from database
+   * @param {String} userId - id of user who is delete
+   * @returns 
+   */
+  async deleteUser(userId) {
+    const deletedUser = await User.deleteOne({_id: userId});
+    if (!deletedUser) {
+      return {
+        status: StatusCodes.BAD_REQUEST,
+        message: `User not found`,
+        data: {},
+      };
+    }
+
+    return {
+      status: StatusCodes.OK,
+      message: 'success',
+      data: {},
+    }
+  };
+}
 
 module.exports = new UserService();

@@ -9,11 +9,13 @@ import {
 // Components
 import Authorization from './pages/authorization';
 import Main from './pages/main';
-import Departments from './pages/departments';
+import { Departments } from './pages/departments';
+import { Users } from './pages/users';
 // Store function
 import { checkAuth, getUserName } from './clientStore/authSlice/auth-sliice';
 // Util functions
 import { PrivateRoute } from './util/private-route';
+import { RoleRoute } from './util/role-route';
 
 function App() {
   const dispatch = useDispatch();
@@ -52,6 +54,11 @@ function App() {
           >
             <Departments userName={userName} />    
           </PrivateRoute>
+          <RoleRoute
+            path='/users'
+          >
+            <Users userName={userName} />    
+          </RoleRoute>
         </Switch>
       </Router>
     </div>

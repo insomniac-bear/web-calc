@@ -1,6 +1,6 @@
 // Components
-import { Footer } from '../Components/Footer';
-import { Promo } from '../Components/Promo';
+import { Footer } from '../Components/footer/Footer';
+import { Promo } from '../Components/promo/Promo';
 import { LoginForm } from '../Components/login-form/Login-form';
 
 export default function Authorization () {

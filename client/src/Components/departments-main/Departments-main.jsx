@@ -4,11 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouteMatch } from 'react-router-dom';
 // Components
 import { AddBtn } from '../add-btn/Add-btn';
-import { DepatrmentList } from '../Department-list';
-import { Loading } from '../Loading';
-import { OutDataMessage } from '../OutData-message';
-import { SettingsContainer } from '../Settings-container';
-import { SettingsTitle } from '../Settings-title';
+import { DepatrmentList } from '../department-list/Department-list';
+import { Loading } from '../loading/Loading';
+import { OutDataMessage } from '../outdata-message/OutData-message';
+import { SettingsContainer } from '../settings-container/Settings-container';
+import { SettingsTitle } from '../settings-title/Settings-title';
 // State functions
 import {
   getProcessDepartmentsLoading,

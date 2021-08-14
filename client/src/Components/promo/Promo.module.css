@@ -1,0 +1,110 @@
+.container {
+  margin: 0 auto;
+  padding: 0;
+  padding-top: calc(30px + (100vw - 320px) / 11.2);
+  padding-bottom: calc(27px + (100vw - 320px) / 9.73);
+
+  width: 100%;
+  min-width: 320px;
+  max-width: 1440px;
+
+  background-color: #4db6ac;
+  background-image: url('../../img/main-bg-mobile@1x.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+@media (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+  .container {
+    background-image: url('../../img/main-bg-mobile@2x.jpg');
+  }
+}
+
+.title {
+  margin: 0;
+  margin-bottom: calc(9px + (100vw - 320px) / 21.3);
+  padding: 0;
+
+  color: #ffffff;
+  font-size: calc(18px + (100vw - 320px) / 10.6);
+  font-weight: 400;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.text {
+  margin: 0 auto;
+  margin-bottom: calc(9px + (100vw - 320px) / 21.3);
+  padding: 0;
+
+  color: #c5d3cb;
+  font-size: calc(14px + (100vw - 320px) / 40.72);
+  letter-spacing: 3px;
+  text-align: center;
+  text-transform: uppercase;
+
+  width: calc(227px + (100vw - 320px) / 0.94);
+}
+
+.link {
+  display: block;
+  margin: 0 auto;
+  padding-top: 6px;
+  padding-right: 11px;
+  padding-bottom: 6px;
+  padding-left: 11px;
+
+  color: #ffffff;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+
+  background-color: #30AD64;
+  border-radius: 4px;
+
+  width: fit-content;
+}
+
+.link:hover {
+  background-color: #9ec6af;
+}
+
+@media(min-width: 768px) {
+  .container {
+    padding-top: 70px;
+    padding-bottom: 73px;
+    background-image: url('../../img/main-bg-tablet@1x.jpg');
+  }
+
+  @media (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+    .container {
+      background-image: url('../../img/main-bg-tablet@2x.jpg');
+    }
+  }
+
+  .title {
+    margin-bottom: 30px;
+    font-size: 60px;
+  }
+
+  .text {
+    margin-bottom: 30px;
+    font-size: 25px;
+
+    width: 699px;
+  }
+}
+
+@media(min-width: 1440px) {
+  .container {
+    background-image: url('../../img/main-bg-desktop@1x.jpg');
+  }
+
+  @media (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+    .container {
+      background-image: url('../../img/main-bg-desktop@2x.jpg');
+    }
+  }
+}

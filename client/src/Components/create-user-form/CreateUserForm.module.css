@@ -8,6 +8,15 @@
   width: 240px;
 }
 
+.title {
+  margin: 0;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  padding: 0;
+
+  text-align: center;
+}
+
 .field {
   display: block;
   margin: 0;
@@ -28,6 +37,26 @@
   font-size: 16px;
 }
 
+.errorField {
+  display: block;
+  margin: 0;
+  margin-bottom: 10px;
+  padding-top: 5px;
+  padding-right: 15px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+
+  width: 100%;
+
+  border-top: none;
+  border-right: none;
+  border-bottom: 1px solid #ff0000;
+  border-left: none;
+
+  color: #30ad64;
+  font-size: 16px;
+}
+
 .field:last-child {
   margin-bottom: 0;
 }
@@ -35,6 +64,11 @@
 .field::placeholder {
   color: #4db6ac;
   opacity: 50%;
+}
+
+.errorField::placeholder {
+  color: #ff0000;
+  opacity: .5;
 }
 
 .label {

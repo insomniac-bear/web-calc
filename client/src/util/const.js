@@ -17,7 +17,13 @@ export const HttpCode = {
   FORBIDDEN: 403,
   NOT_FOUND: 404,
   INTERNAL_SERVER_ERROR: 500,
-}
+};
+
+export const Role = {
+  ADMIN: 'admin',
+  MODERATOR: 'moderator',
+  USER: 'user',
+};
 
 export const LIMIT_DATA = 5;
 

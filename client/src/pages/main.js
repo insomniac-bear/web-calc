@@ -1,10 +1,10 @@
 // Third party libraries
 import { useSelector } from 'react-redux';
 // Components
-import { Estimates } from '../Components/Estimates';
-import { Footer } from '../Components/Footer';
-import { Header } from '../Components/Header';
-import { Promo } from '../Components/Promo';
+import { Estimates } from '../Components/estimates/Estimates';
+import { Footer } from '../Components/footer/Footer';
+import { Header } from '../Components/header/Header';
+import { Promo } from '../Components/promo/Promo';
 // Methods for work with client store
 import { getAuthenticatedStatus } from '../clientStore/authSlice/auth-sliice';
 

@@ -2,7 +2,7 @@
 import { Route, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 // Components
-import { Loading } from '../Components/Loading';
+import { Loading } from '../Components/loading/Loading';
 // Functions for work with local state
 import { getAuthenticatedStatus, getProcessAuthStatus } from "../clientStore/authSlice/auth-sliice"
 

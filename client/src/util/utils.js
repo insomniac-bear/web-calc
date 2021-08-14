@@ -34,7 +34,7 @@ export const onChangeFormValue = (evt, form, handler) => {
   handler({...form, [evt.target.name]: evt.target.value});
 };
 
-export const fetchedData = async (url, method, sendData = null) => {
+export const fetchedData = async (url, method, sendData = undefined) => {
   const body = sendData ? JSON.stringify(sendData) : null;
 
   const response = await fetch(`${API_URL}/${url}`, {
