@@ -1,0 +1,57 @@
+.container {
+  grid-area: localValues;
+
+  margin: 0;
+  padding-top: 5px;
+  padding-right: 5px;
+  padding-bottom: 0;
+  padding-left: 5px;
+
+  border-top: 1px solid #30ad64;
+  border-bottom: 1px solid #30ad64;
+}
+
+.groupInput {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.groupInput input {
+  margin: 0;
+  margin-bottom: 5px;
+  padding: 0;
+
+  width: 40px;
+
+  text-align: center;
+
+  border-top: none;
+  border-right: none;
+  border-bottom: 1px solid #000000;
+  border-left: none;
+}
+
+.inputContainer {
+  margin-top: 0;
+  margin-right: 15px;
+  margin-bottom: 0;
+  margin-left: 0;
+  padding: 0;
+}
+
+.select {
+  margin: 0;
+  margin-bottom: 5px;
+  padding: 0;
+  padding-left: 10px;
+
+  width: 200px;
+
+  border-top: none;
+  border-right: none;
+  border-bottom: 1px solid #000000;
+  border-left: none;
+}

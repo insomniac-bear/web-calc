@@ -53,3 +53,7 @@ export const fetchedData = async (url, method, sendData = undefined) => {
     data
   };
 };
+
+export const parseName = (key) => {
+  return key.replace(/([A-Z])/g, ' $1').replace(/^./, (str) => str.toUpperCase());
+};

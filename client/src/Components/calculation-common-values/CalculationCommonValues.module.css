@@ -1,0 +1,98 @@
+.commonValues {
+  grid-area: commonValues;
+  padding-top: 10px;
+  padding-right: 10px;
+  border-top:  1px solid #30ad64;
+  border-right: 1px solid #30ad64;
+}
+
+.commonLabel {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0;
+  margin-bottom: 25px;
+  padding: 0;
+}
+
+.commonInput {
+  margin: 0;
+  margin-left: 15px;
+  padding: 0;
+  padding-right: 5px;
+  padding-left: 5px;
+
+  border-top: none;
+  border-right: none;
+  border-bottom: 1px solid #000000;
+  border-left: none;
+
+  width: 95px;
+}
+
+.commonInput::placeholder {
+  color:rgba(77, 182, 172, .5);
+}
+
+.checkboxContainer {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+
+  margin: 0;
+  margin-right: px;
+  margin-left: auto;
+  padding: 0;
+
+  width: 180px;
+  border: none;
+}
+
+.checkLabel {
+  margin: 0;
+  padding: 0;
+}
+
+.checkLabel:first-child {
+  margin-right: 10px;
+}
+
+.checkbox {
+  margin: 0;
+  margin-bottom: 25px;
+  margin-left: 5px;
+  padding: 0;
+}
+
+.extraStop {
+  margin: 0;
+  margin-top: 5px;
+  padding: 0;
+  border: none;
+}
+
+.extraTitle {
+  margin: 0;
+  padding: 0;
+
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.extraBtn {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  margin-right: 0;
+  margin-bottom: 10px;
+  margin-left: auto;
+  padding: 0;
+
+  border: none;
+  background-color: inherit;
+}
+
+.extraBtn svg {
+  margin-left: 5px;
+  width: 15px;
+  height: 15px;
+}

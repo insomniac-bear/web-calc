@@ -1,0 +1,26 @@
+.commonLabel {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0;
+  margin-bottom: 25px;
+  padding: 0;
+}
+
+.commonInput {
+  margin: 0;
+  margin-left: 15px;
+  padding: 0;
+  padding-right: 5px;
+  padding-left: 5px;
+
+  border-top: none;
+  border-right: none;
+  border-bottom: 1px solid #000000;
+  border-left: none;
+
+  width: 95px;
+}
+
+.commonInput::placeholder {
+  color:rgba(77, 182, 172, .5);
+}

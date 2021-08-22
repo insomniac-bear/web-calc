@@ -1,0 +1,50 @@
+
+.tabsMenu {
+  display: flex;
+  grid-area: tabMenu;
+  margin: 0;
+  padding: 0;
+
+  width: 100%;
+  height: 100%;
+  border-left: 1px solid #30ad64;
+  list-style: none;
+}
+
+.tabsItem {
+  margin: 0;
+  padding: 0;
+
+  height: 100%;
+}
+
+.tabBtn {
+  display: block;
+  margin: 0;
+  padding: 5px;
+
+  height: 100%;
+
+  background-color: inherit;
+
+  font-size: 12px;
+  text-align: center;
+
+  border: 1px solid #30AD64;
+}
+
+.activeTabBtn {
+  display: block;
+  margin: 0;
+  padding: 5px;
+
+  height: 100%;
+
+  background-color: #30ad64;
+
+  color: #ffffff;
+  font-size: 12px;
+  text-align: center;
+
+  border: 1px solid #30AD64;
+};

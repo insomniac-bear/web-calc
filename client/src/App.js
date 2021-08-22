@@ -10,6 +10,7 @@ import {
 import Authorization from './pages/authorization';
 import Main from './pages/main';
 import { Departments } from './pages/departments';
+import { Calculations } from './pages/calculations';
 import { Users } from './pages/users';
 // Store function
 import { checkAuth, getUserName } from './clientStore/authSlice/auth-sliice';
@@ -53,6 +54,11 @@ function App() {
             path='/departments'
           >
             <Departments userName={userName} />    
+          </PrivateRoute>
+          <PrivateRoute
+            path='/calculations'
+          >
+            <Calculations userName={userName} />    
           </PrivateRoute>
           <RoleRoute
             path='/users'

@@ -7,11 +7,12 @@ import * as immutable from 'object-path-immutable';
 // Components
 import { BtnSubmit } from '../btn-submit/Btn-submit';
 import { ExtraOptions } from '../extra-options/Extra-options';
+import { FormContainer } from '../form-container/Form-container';
 import { LongDistance } from '../long-distance/Long-distance';
 import { Packing } from '../packing/Packing';
 import { DepartmentRates } from '../department-rates/Department-rates';
 import { Truck } from '../truck/Truck';
-// Functions for work with local state
+// Local State Functions
 import { getUserId, getCompanyId } from '../../clientStore/authSlice/auth-sliice';
 import {
   getDepartmentSavingStatus,
@@ -122,65 +123,67 @@ export const DepartmentForm = ({ departmentData, formType = 'new', departmentId 
   }
 
   return(
-    <form className={styles.form}>
-      <h2 className='visually-hidden'>Form for add new department</h2>
-      <fieldset className={styles.formHeader}>
-        <legend className="visually-hidden">Common settings for department</legend>
-        <div className={styles.fieldContainer}>
-          <label htmlFor='departmentName' className={styles.fieldName}>Department name</label>
-          <input
-            id='departmentName'
-            className={styles.departmentField}
-            type='text'
-            placeholder='City or Town where you have a branch'
-            name='departmentName'
-            value={formValue.departmentName}
-            onChange={(evt) => onFormValueChange(evt.target.name, 'set', evt.target.value)}
-            onFocus={clearLastTarget}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor='sameAs' className={styles.fieldName}>Same as</label>
-          <select
-            id='sameAs'
-            className={styles.departmentField}
-            onFocus={clearLastTarget}
-            onChange={onChangeSameAsSelect}
-          >
-            <option>None</option>
-            {renderDepartmentsOptions(departments)}
-          </select>
-        </div>
-      </fieldset>
-      <DepartmentRates
-        rates={formValue.rates}
-        setDepartmentFormValue={onFormValueChange}
-        lastTarget={lastTarget}
-        setLastTarget={setLastTarget}
-      />
-      <Truck
-        truckFee={formValue.truckFee}
-        changeTruckValue={onFormValueChange}
-        clearLastTarget={clearLastTarget}
-      />
-      <ExtraOptions
-        extraOptions={formValue.extraOptions}
-        changeExtraOptions={onFormValueChange}
-      />
-      <Packing
-        packing={formValue.packing}
-        changePackingValue={onFormValueChange}
-      />
-      <LongDistance
-        distance={formValue.longDistance}
-        changeDistanceValue={onFormValueChange}
-      />
-      <BtnSubmit
-        isActive={true}
-        action={formSubmit}
-        name={'Save'}
-      />
-    </form>
+    <FormContainer>
+      <form className={styles.form}>
+        <h2 className='visually-hidden'>Form for add new department</h2>
+        <fieldset className={styles.formHeader}>
+          <legend className="visually-hidden">Common settings for department</legend>
+          <div className={styles.fieldContainer}>
+            <label htmlFor='departmentName' className={styles.fieldName}>Department name</label>
+            <input
+              id='departmentName'
+              className={styles.departmentField}
+              type='text'
+              placeholder='City or Town where you have a branch'
+              name='departmentName'
+              value={formValue.departmentName}
+              onChange={(evt) => onFormValueChange(evt.target.name, 'set', evt.target.value)}
+              onFocus={clearLastTarget}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor='sameAs' className={styles.fieldName}>Same as</label>
+            <select
+              id='sameAs'
+              className={styles.departmentField}
+              onFocus={clearLastTarget}
+              onChange={onChangeSameAsSelect}
+            >
+              <option>None</option>
+              {renderDepartmentsOptions(departments)}
+            </select>
+          </div>
+        </fieldset>
+        <DepartmentRates
+          rates={formValue.rates}
+          setDepartmentFormValue={onFormValueChange}
+          lastTarget={lastTarget}
+          setLastTarget={setLastTarget}
+        />
+        <Truck
+          truckFee={formValue.truckFee}
+          changeTruckValue={onFormValueChange}
+          clearLastTarget={clearLastTarget}
+        />
+        <ExtraOptions
+          extraOptions={formValue.extraOptions}
+          changeExtraOptions={onFormValueChange}
+        />
+        <Packing
+          packing={formValue.packing}
+          changePackingValue={onFormValueChange}
+        />
+        <LongDistance
+          distance={formValue.longDistance}
+          changeDistanceValue={onFormValueChange}
+        />
+        <BtnSubmit
+          isActive={true}
+          action={formSubmit}
+          name={'Save'}
+        />
+      </form>
+    </FormContainer>
   );
 };

@@ -1,0 +1,74 @@
+.form {
+  display: grid;
+  margin-top: 0;
+  margin-right: auto;
+  margin-bottom: 100px;
+  margin-left: auto;
+  padding: 0;
+  width: 940px;
+}
+
+.fieldset {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  margin-bottom: 25px;
+  padding: 0;
+  padding-top: 30px;
+
+  font-size: 16px;
+
+  border: none;
+}
+
+.label {
+  margin: 0;
+  padding: 0;
+}
+
+.input {
+  margin: 0;
+  margin-left: 15px;
+  padding: 6px 10px;
+
+  border-top: none;
+  border-right: none;
+  border-bottom: 1px solid #000000;
+  border-left: none;
+
+  width: 300px;
+}
+
+.input::placeholder {
+  margin: 0;
+  padding: 0;
+  color: rgba(77, 182, 172, .5);
+}
+
+.select {
+  margin: 0;
+  margin-left: 15px;
+  padding: 6px 10px;
+
+  width: 300px;
+
+  border-top: none;
+  border-right: none;
+  border-bottom: 1px solid #000000;
+  border-left: none;
+}
+
+.red {
+  color: red;
+}
+
+.greedContainer {
+  display: grid;
+  grid-template-columns: 300px auto;
+  grid-template-rows: 30px 77px auto 1fr;
+  grid-template-areas:
+    "empty tabMenu"
+    "commonValues localValues"
+    "commonValues resultBox"
+    "commonValues footer";
+}
