@@ -14,7 +14,7 @@ const ESTIMATES_LINKS = [
   {
     name: 'Calculator',
     description: 'Customizable calculator',
-    link: '/calculator',
+    link: '/calculations',
   }
 ];
 

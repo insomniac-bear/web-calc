@@ -20,24 +20,24 @@ const PORT = process.env.NODE_ENV === `production` ? process.env.PRODUCTION_PORT
 const uriDb = process.env.CONNECTION_STRING;
 const CLIENT_URL = !process.env.NODE_ENV ? process.env.DEV_CLIENT_URL : process.env.PRODUCTION_CLIENT_URL;
 
-// const allowedDomains = [
-//   `${CLIENT_URL}`,
-//   `${CLIENT_URL}/`,
-// ];
+const allowedDomains = [
+  `${CLIENT_URL}`,
+  `${CLIENT_URL}/`,
+];
 
 app.use(express.json());
 app.use(cookieParser());
-// app.use(cors({
-//   origin: (origin, callback) => {
-// 		if (!allowedDomains.includes(origin)) {
-// 			const msg = `Access denied`;
-// 			return callback(new Error(msg), false);
-// 		}
-// 		return callback(null, true);
-//   },
-//   methods: 'GET,HEAD,POST,PUT,PATCH,DELETE,OPTIONS',
-//   credentials: true,
-// }));
+app.use(cors({
+  origin: (origin, callback) => {
+		if (!allowedDomains.includes(origin)) {
+			const msg = `Access denied`;
+			return callback(new Error(msg), false);
+		}
+		return callback(null, true);
+  },
+  methods: 'GET,HEAD,POST,PUT,PATCH,DELETE,OPTIONS',
+  credentials: true,
+}));
 // Connect routes API
 app.use('/api/user', userRouter);
 app.use('/api/department', departmentRouter);
