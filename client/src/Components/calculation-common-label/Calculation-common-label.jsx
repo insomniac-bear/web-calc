@@ -29,7 +29,7 @@ export const CalculationCommonLabel = (props) => {
 
 CalculationCommonLabel.propTypes = {
   title: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.any.isRequired,
   placeholder: PropTypes.string.isRequired,
   inputName: PropTypes.string.isRequired,
 };

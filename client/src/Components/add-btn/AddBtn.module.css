@@ -21,6 +21,7 @@
 
 .addDepartment svg {
   margin-right: 10px;
+  fill: #4db6ac;
 }
 
 .addDepartment:hover {

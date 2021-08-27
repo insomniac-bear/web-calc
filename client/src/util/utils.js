@@ -1,18 +1,5 @@
 import { API_URL } from './const';
 
-export const IconNames = {
-  CALCULATIONS: 'Calculations',
-  DEPARTMENTS: 'Departments',
-  PENCIL: 'Pencil',
-  PLUS: 'Plus',
-  SEARCH: 'Search',
-  SETTINGS: 'Settings',
-  TRIANGLE: 'Triangle',
-  USER: 'User',
-  USERS: 'Users',
-  LOGOUT: 'Logout',
-};
-
 export const HttpCode = {
   OK: 200,
   FAILED: 400,

@@ -17,7 +17,7 @@ import { PageMenu } from '../Components/page-menu/Page-menu';
 // Functions for work with state
 import { getUserRole, checkAuth } from '../clientStore/authSlice/auth-sliice';
 //Utils functions
-import { IconNames } from '../util/utils';
+import { IconNames } from '../util/const';
 import { PrivateRoute } from '../util/private-route';
 
 

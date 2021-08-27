@@ -58,14 +58,10 @@
   border-left: none;
 }
 
-.red {
-  color: red;
-}
-
 .greedContainer {
   display: grid;
   grid-template-columns: 300px auto;
-  grid-template-rows: 30px 77px auto 1fr;
+  grid-template-rows: 30px 105px auto 1fr;
   grid-template-areas:
     "empty tabMenu"
     "commonValues localValues"

@@ -1,12 +1,20 @@
+export const boxesKey = {
+  SMALL: 'totalSmallBoxes',
+  MEDIUM: 'totalMediumBoxes',
+  FRAGILE: 'fragileBoxes',
+};
+
 export const IconNames = {
   CALCULATIONS: 'Calculations',
   DEPARTMENTS: 'Departments',
   PENCIL: 'Pencil',
   PLUS: 'Plus',
+  MINUS: 'Minus',
   SEARCH: 'Search',
   SETTINGS: 'Settings',
   TRIANGLE: 'Triangle',
   USER: 'User',
+  USERS: 'Users',
   LOGOUT: 'Logout',
 };
 
@@ -27,5 +35,5 @@ export const Role = {
 
 export const LIMIT_DATA = 5;
 
-export const API_URL = 'http://localhost:8000/api';
-// export const API_URL = '/api';
+// export const API_URL = 'http://localhost:8000/api';
+export const API_URL = '/api';

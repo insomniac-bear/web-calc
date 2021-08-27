@@ -1,5 +1,5 @@
 // Util functions
-import { IconNames } from '../util/utils';
+import { IconNames } from '../util/const';
 
 export const Icon = ({ name }) => {
   switch (name) {
@@ -38,9 +38,14 @@ export const Icon = ({ name }) => {
       </svg>
     case IconNames.PLUS:
       return <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="15" cy="15" r="15" fill="#4DB6AC"/>
+        <circle cx="15" cy="15" r="15" />
         <line x1="8.5" y1="15.5" x2="20.5" y2="15.5" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
         <line x1="14.7314" y1="21.5" x2="14.7314" y2="9.5" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>;
+    case IconNames.MINUS:
+      return <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="15" cy="15" r="15" />
+        <line x1="8.5" y1="15.5" x2="20.5" y2="15.5" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>;
     case IconNames.SEARCH:
       return <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">

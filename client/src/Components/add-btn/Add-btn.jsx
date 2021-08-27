@@ -2,7 +2,7 @@
 import { Link } from 'react-router-dom';
 // Components
 import { Icon } from '../Icon';
-import { IconNames } from '../../util/utils';
+import { IconNames } from '../../util/const';
 // Styles
 import styles from './AddBtn.module.css';
 

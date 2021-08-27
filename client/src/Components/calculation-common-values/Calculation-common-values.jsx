@@ -12,18 +12,18 @@ import { IconNames } from '../../util/const';
 import styles from './CalculationCommonValues.module.css';
 
 const EXTRA_STOP_DATA_TEMPLATE = {
-  baseLoadingHours: '',
-  baseUnloadingHourse: '',
-  cubicFt: '',
-  miles: '',
-  driveTime: '',
-  totalSmallBoxes: '',
-  totalMediumBoxes: '',
-  fragileBoxes: '',
+  baseLoadingHours: 0,
+  baseUnloadingHourse: 0,
+  cubicFt: 0,
+  miles: 0,
+  driveTime: 0,
+  totalSmallBoxes: 0,
+  totalMediumBoxes: 0,
+  fragileBoxes: 0,
 };
 
 export const CalculationCommonValues = ({ commonValues, onFormChange }) => {
-  const keyNames = Object.keys(commonValues).slice(1, 8);
+  const keyNames = Object.keys(commonValues).slice(1, 9);
   const [lastTarget, setLastTarget] = useState(undefined);
 
   const groupInputChange = (evt) => {
@@ -52,6 +52,11 @@ export const CalculationCommonValues = ({ commonValues, onFormChange }) => {
   const addExtraStop = (evt) => {
     evt.preventDefault();
     onFormChange(`commonValues.extraStops`, 'push', { ...EXTRA_STOP_DATA_TEMPLATE });
+  };
+
+  const removeExtraStop = (evt) => {
+    evt.preventDefault();
+    onFormChange(`commonValues.extraStops.${commonValues.extraStops.length - 1}`, 'del');
   };
 
   return (
@@ -159,6 +164,16 @@ export const CalculationCommonValues = ({ commonValues, onFormChange }) => {
           Add extra stop
           <Icon name={IconNames.PLUS} />
         </button>
+        {
+          commonValues.extraStops.length > 0 && 
+          <button
+            className={styles.removeExtraBtn}
+            onClick={removeExtraStop}
+          >
+            Delete extra stop
+            <Icon name={IconNames.MINUS} />
+          </button>
+        }
       </fieldset>
     </section>
 

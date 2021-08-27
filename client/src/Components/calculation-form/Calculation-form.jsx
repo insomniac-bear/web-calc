@@ -5,7 +5,8 @@ import { nanoid } from 'nanoid';
 import * as immutable from 'object-path-immutable';
 // Components
 import { CalculationCommonValues } from '../calculation-common-values/Calculation-common-values';
-import { CalculationTabValues } from '../calculation-tab-values/Calculation-tab-values';
+import { CalculationDayResult } from '../calculation-day-result/Calculation-day-result';
+import { CalculationTabDayValues } from '../calculation-tab-day-values/Calculation-tab-day-values';
 import { CalculationTabs } from '../calculation-tabs/Calculatuon-tabs'
 import { FormContainer } from '../form-container/Form-container';
 // Local State Functions
@@ -61,6 +62,13 @@ export const CalculationForm = () => {
   ];
 
   const onChangeDepartmentSelect = async (evt) => {
+    if (evt.target.value === 'None') {
+      setCalculationFormValue(immutable.set(calculationForm, 'dayPackingNoPacking.rate', 'none'));
+      setRates([]);
+      onFormValueChange('department', 'del');
+      setCalculationFormValue({...calculationForm, department: undefined});
+      return;
+    }
     const selectedDepartment = await fetchedData('department/getDepartment', 'POST', {id: evt.target.value});
     if (selectedDepartment.status === 200) {
       setCalculationFormValue(immutable.set(calculationForm, 'department', { ...selectedDepartment.data }));
@@ -92,9 +100,10 @@ export const CalculationForm = () => {
               Department
               <select 
                 className={styles.select}
+                value={calculationForm.department !== undefined ? calculationForm.department._id : 'None'}
                 onChange={onChangeDepartmentSelect}
               >
-                <option className={styles.red}>None</option>
+                <option value={undefined}>None</option>
                 {
                   departments.map((department) => {
                     return(
@@ -111,7 +120,12 @@ export const CalculationForm = () => {
               commonValues={calculationForm.commonValues}
               onFormChange={onFormValueChange}
             />
-            <CalculationTabValues rates={rates ? rates : []}/>
+            <CalculationTabDayValues
+              rates={rates ? rates : []}
+              formData={calculationForm}
+              formChange={onFormValueChange}
+            />
+            <CalculationDayResult calculationData={calculationForm}/>
           </section>
         </header>
       </form>

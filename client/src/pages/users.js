@@ -16,7 +16,7 @@ import { UserEdit } from '../Components/user-edit/User-edit';
 // Functions for work with state
 import { getUserRole, checkAuth } from '../clientStore/authSlice/auth-sliice';
 // Utils function
-import { IconNames } from '../util/utils';
+import { IconNames } from '../util/const';
 import { RoleRoute } from '../util/role-route';
 
 export const Users = ({ userName }) => {
