@@ -11,6 +11,7 @@ import styles from './CalculationDayResult.module.css';
 export const CalculationDayResult = (props) => {
   const { calculationData } = props;
   const commonValues = { ...calculationData.commonValues };
+  const localValues = { ...calculationData.dayPackingNoPacking }
 
   return(
     <section className={styles.container}>
@@ -45,7 +46,7 @@ export const CalculationDayResult = (props) => {
         <li className={styles.paramsItem}>
           <p className={styles.paramsName}>Movers:</p>
           <span className={styles.paramsDecor}></span>
-          <p className={styles.paramsValue}>{calculateOfMovers(totalCubicFt(commonValues))}</p>
+          <p className={styles.paramsValue}>{calculateOfMovers(commonValues, localValues)}</p>
         </li>
        </ul>
     </section>

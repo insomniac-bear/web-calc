@@ -176,6 +176,19 @@ export const Packing = (props) => {
           valueType={'$'}
         />
       </div>
+      <div className={styles.packingContainer}>
+        <SectionTitle title={'Crating'}/>
+        <DepartmentLabel
+          inputId={'packingCrating'}
+          name={'packingCrating'}
+          title={'Time to build one crate for 2 movers'}
+          placeholder={'ex: 3'}
+          value={packing.crating.timeToBuildCrate}
+          changeValue={(evt) => changePackingValue(`packing.crating.timeToBuildCrate`, 'set', evt.target.value)}
+          valueType={'hrs'}
+          isLong={true}
+        />
+      </div>
     </section>
   );
 }

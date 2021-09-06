@@ -47,7 +47,6 @@
 
 .field::placeholder {
   color: #4db6ac;
-  opacity: 50%;
 }
 
 @media(min-width: 768px) {

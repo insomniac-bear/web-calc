@@ -32,7 +32,7 @@ export const totalCubicFt = (commonValues) => {
     }, 0);
   }
 
-  const result = Number(cubicFt) + totalExtraCubicFt + (Number(totalSmallBoxes) + totalExtraSmallBoxes) * 3 + (Number(totalMediumBoxes) + totalExtraMediumBoxes) * 3 + (Number(fragileBoxes) + totalExtraFragileBoxes) * 1.5;
+  const result = Number(cubicFt) + totalExtraCubicFt + (Number(totalSmallBoxes) + totalExtraSmallBoxes) * 1.5 + (Number(totalMediumBoxes) + totalExtraMediumBoxes) * 3 + (Number(fragileBoxes) + totalExtraFragileBoxes) * 1.5;
 
   return result.toFixed(2);
 };
@@ -60,7 +60,7 @@ export const totalBoxes = (commonValues, key) => {
 };
 
 /**
- * 
+ * Function for round value to 0,05
  * @param {String} num - allCubicFt
  * @returns {Number} Truck value round up to 0.05
  */
@@ -74,8 +74,8 @@ const truckRoundTo05 = (num) => {
   let fractionalRoundUp;
 
   const resultDivision = (param / 1400).toFixed(2);
-  const floorOfDivision =  Math.floor(param / 1400);
-  const fractionalPart = ((resultDivision - Math.floor((param / 1400).toFixed(2))).toFixed(2) * 100).toFixed();
+  const floorOfDivision =  Math.trunc(param / 1400);
+  const fractionalPart = ((resultDivision - floorOfDivision).toFixed(2) * 100).toFixed();
 
   if (fractionalPart > 95) {
     return Number((floorOfDivision + 1).toFixed(2));
@@ -92,20 +92,23 @@ const truckRoundTo05 = (num) => {
   return Number(result);
 };
 
-const truckRoundTo25 = (num) => {
+/**
+ * Function for round to 0,25
+ * @param {String} num - value for round
+ * @returns {Number} result - rounded value
+ */
+const truckRoundTo25 = (num = 0) => {
   const param = Number(num);
 
   if (param === 0) {
-    console.log(param)
     return Number(0);
   }
 
   let fractionalRoundUp;
 
-  const resultDivision = (param / 1400).toFixed(2);
-  const floorOfDivision =  Math.floor(param / 1400);
-  const fractionalPart = ((resultDivision - Math.floor((param / 1400).toFixed(2))).toFixed(2) * 100).toFixed();
-
+  const resultDivision = (param / 1400)// .toPrecision(2)//.toFixed(2);
+  const floorOfDivision =  Math.trunc(param / 1400);
+  const fractionalPart = ((resultDivision - floorOfDivision).toFixed(2) * 100).toFixed();
   if (fractionalPart <= 0.000001) {
     return Number(floorOfDivision).toFixed(2);
   } else if (fractionalPart > 0 && fractionalPart <= 25) {
@@ -119,12 +122,18 @@ const truckRoundTo25 = (num) => {
   }
 
   const result = String(floorOfDivision) + '.' + String(fractionalRoundUp);
-
   return Number(result);
 };
 
-export const calculateOfMovers = (num = 0) => {
-  const cubicFt = Number(num);
+/**
+ * Function for calculate count of moovers
+ * @param {Object} commonValues
+ * @param {Object} localValues
+ * @returns {Number} count of movers
+ */
+export const calculateOfMovers = (commonValues, localValues) => {
+
+  const cubicFt = Number(totalCubicFt(commonValues));
 
   if (cubicFt <= 0.000001) {
     return 0;

@@ -52,6 +52,9 @@ export const departmentDataModel = {
       packingPapper: '',
       bubbleWrap: '',
     },
+    crating: {
+      timeToBuildCrate: '',
+    },
   },
   longDistance: {
     salaryExpenses: {

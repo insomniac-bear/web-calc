@@ -35,5 +35,5 @@ export const Role = {
 
 export const LIMIT_DATA = 5;
 
-// export const API_URL = 'http://localhost:8000/api';
-export const API_URL = '/api';
+export const API_URL = 'http://localhost:8000/api';
+// export const API_URL = '/api';
