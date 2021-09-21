@@ -1,18 +1,5 @@
 import { API_URL } from './const';
 
-export const HttpCode = {
-  OK: 200,
-  FAILED: 400,
-  UNAUTHORIZED: 401,
-  FORBIDDEN: 403,
-  NOT_FOUND: 404,
-  INTERNAL_SERVER_ERROR: 500,
-}
-
-export const showComponent = (isShow, component) => {
-  return isShow ? component : ``;
-};
-
 export const showAlterComponent = (condition, primaryComponent, alterComponent) => {
   return condition ? primaryComponent : alterComponent;
 };

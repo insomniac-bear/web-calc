@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 // Components
 import { DepartmentRadiobuttons } from '../department-radiobuttons/Department-radiobuttons';
 import { DepartmentLabel } from '../department-label/Department-label';
-// Utils
-import { showComponent, showAlterComponent } from '../../util/utils';
 // Styles
 import styles from './RateFieldset.module.css';
 
@@ -69,34 +67,33 @@ export const RateFieldset = (props) => {
       <div>
         <section className={styles.rateSection}>
           {
-            showAlterComponent(
-              rateType === 'discount',
-              <DepartmentLabel
-                inputId={`${index+1}_hourly_rate`}
-                name={`hourlyRate${index}`}
-                title={'Hoyrly rate for 2 movers'}
-                placeholder={'ex. 99'}
-                value={rate[`hourlyRate${index}`]}
-                changeValue={(evt) => setRatesValue(evt, index)}
-                valueType={'$'}
-                isFocused={lastTarget === `hourlyRate${index}`}
-              />,
+            rateType === 'discount' &&
+            <DepartmentLabel
+            inputId={`${index+1}_hourly_rate`}
+            name={`hourlyRate${index}`}
+            title={'Hourly rate for 2 movers'}
+            placeholder={'ex. 99'}
+            value={rate[`hourlyRate${index}`]}
+            changeValue={(evt) => setRatesValue(evt, index)}
+            valueType={'$'}
+            isFocused={lastTarget === `hourlyRate${index}`}
+            />}
+          {
+            rateType === 'extra' &&
               <DepartmentLabel
                 inputId={`${index+1}_cash_payment`}
-                name={`cashPayment${index}`}
-                title={'Hoyrly rate for 2 movers CASH PAYMENT'}
+                name={`cardPayment${index}`}
+                title={'Hourly rate for 2 movers CARD PAYMENT'}
                 placeholder={'ex. 99'}
-                value={rate[`cashPayment${index}`]}
+                value={rate[`cardPayment${index}`]}
                 changeValue={(evt) => setRatesValue(evt, index)}
                 valueType={'$'}
-                isFocused={lastTarget === `cashPayment${index}`}
+                isFocused={lastTarget === `cardPayment${index}`}
               />
-            )
           }
           {
-            showAlterComponent(
-              rateType === 'discount',
-              <DepartmentLabel
+            rateType === 'discount' &&
+            <DepartmentLabel
                 inputId={`${index + 1}_cash_discount`}
                 index={index}
                 name={`cashDiscount${index}`}
@@ -106,19 +103,21 @@ export const RateFieldset = (props) => {
                 changeValue={(evt) => setRatesValue(evt, index)}
                 valueType={'$'}
                 isFocused={lastTarget === `cashDiscount${index}`}
-              />,
-              <DepartmentLabel
+            />
+          }
+          {
+            rateType === 'extra' &&
+            <DepartmentLabel
                 inputId={`${index + 1}_card_payment`}
                 index={index}
-                name={`cardPayment${index}`}
-                title={'Extra hourly amount for CARD PAYMENT'}
+                name={`deductPayment${index}`}
+                title={'Deduct hourly amount for CASH PAYMENT'}
                 placeholder={'ex. 10'}
-                value={rate[`cardPayment${index}`]}
+                value={rate[`deductPayment${index}`]}
                 changeValue={(evt) => setRatesValue(evt, index)}
                 valueType={'$'}
-                isFocused={lastTarget === `cardPayment${index}`}
-              />
-            )
+                isFocused={lastTarget === `deductPayment${index}`}
+            />
           }
           <DepartmentLabel
             inputId={`${index + 1}_extra_mover`}
@@ -131,8 +130,8 @@ export const RateFieldset = (props) => {
             valueType={'$'}
             isFocused={lastTarget === `extraMover${index}`}
           />
-          {showComponent(
-            index === 0,
+          {
+            index === 0 &&
             <DepartmentRadiobuttons
               title='Same for all the rates bellow'
               name='samePaymentForAll'
@@ -141,7 +140,7 @@ export const RateFieldset = (props) => {
               firstValue='Yes'
               secondValue='No'
             />
-          )}
+          }
           <div className={styles.decorateLine}></div>
         </section>
         <section className={styles.rateSection}>
@@ -156,8 +155,8 @@ export const RateFieldset = (props) => {
             valueType={'$'}
             isFocused={lastTarget === `extraTruck${index}`}
           />
-          {showComponent(
-            index === 0,
+          {
+            index === 0 &&
             <DepartmentRadiobuttons
               title={'Same for all the rates bellow'}
               name={'sameTruckForAll'}
@@ -166,7 +165,7 @@ export const RateFieldset = (props) => {
               firstValue='Yes'
               secondValue='No'
             />
-          )}
+          }
         </section>
       </div>
     </fieldset>

@@ -1,3 +1,5 @@
+import { truckRoundTo05, truckRoundTo25, trucks5PercentForBiggest, trucksRoundUpToOne } from './calculation-util';
+
 /**
  * Function for calculate total count of cubic ft.
  * @param {Object} commonValues - common values
@@ -38,10 +40,32 @@ export const totalCubicFt = (commonValues) => {
 };
 
 /**
- * Function for calculate total count of small boxes
+ * function for calculate all count of miles
+ * @param {Object} commonValues - values with common params of calculate
+ * @returns {Number} - total count of miles
+ */
+ export const totalMiles = (commonValues) => {
+
+  const { miles = 0, extraStops = [] } = commonValues
+  let totalExtraMiles = 0;
+
+  if (extraStops && extraStops.length > 0) {
+    totalExtraMiles = extraStops.reduce((acc, extraStop) => {
+      const currentItem = Number(extraStop.miles);
+      return acc + currentItem;
+    }, 0);
+  }
+
+  const result = Number(miles) + totalExtraMiles;
+
+  return result.toFixed(2);
+};
+
+/**
+ * Function for calculate total count of boxes
  * @param {Object} commonValues
  * @param {String} key - name of key, wich hold a number of some box
- * @returns {Number} total count of all small boxes
+ * @returns {Number} total count of all boxes with [key] name
  */
 export const totalBoxes = (commonValues, key) => {
   const { extraStops = [] } = commonValues;
@@ -60,89 +84,83 @@ export const totalBoxes = (commonValues, key) => {
 };
 
 /**
- * Function for round value to 0,05
- * @param {String} num - allCubicFt
- * @returns {Number} Truck value round up to 0.05
- */
-const truckRoundTo05 = (num) => {
-  const param = Number(num);
-
-  if (param === 0) {
-    return Number(0);
-  }
-
-  let fractionalRoundUp;
-
-  const resultDivision = (param / 1400).toFixed(2);
-  const floorOfDivision =  Math.trunc(param / 1400);
-  const fractionalPart = ((resultDivision - floorOfDivision).toFixed(2) * 100).toFixed();
-
-  if (fractionalPart > 95) {
-    return Number((floorOfDivision + 1).toFixed(2));
-  }
-  
-  if (fractionalPart < 10) {
-    fractionalRoundUp = String(fractionalPart)[0] <= 5 ? '05' : '10';
-  } else {
-    fractionalRoundUp = String(fractionalPart)[1] <= 5 ? String(fractionalPart)[0] + '5' : String(Number(String(fractionalPart)[0]) + 1) + '0';
-  }
-
-  const result = String(floorOfDivision) + '.' + String(fractionalRoundUp);
-
-  return Number(result);
-};
-
-/**
- * Function for round to 0,25
- * @param {String} num - value for round
- * @returns {Number} result - rounded value
- */
-const truckRoundTo25 = (num = 0) => {
-  const param = Number(num);
-
-  if (param === 0) {
-    return Number(0);
-  }
-
-  let fractionalRoundUp;
-
-  const resultDivision = (param / 1400)// .toPrecision(2)//.toFixed(2);
-  const floorOfDivision =  Math.trunc(param / 1400);
-  const fractionalPart = ((resultDivision - floorOfDivision).toFixed(2) * 100).toFixed();
-  if (fractionalPart <= 0.000001) {
-    return Number(floorOfDivision).toFixed(2);
-  } else if (fractionalPart > 0 && fractionalPart <= 25) {
-    fractionalRoundUp = 25;
-  } else if (fractionalPart > 25 && fractionalPart <= 50) {
-    fractionalRoundUp = 50;
-  } else if (fractionalPart > 50 && fractionalPart <= 75) {
-    fractionalRoundUp = 75;
-  } else if (fractionalPart > 75) {
-    return Number(floorOfDivision + 1).toFixed(2);
-  }
-
-  const result = String(floorOfDivision) + '.' + String(fractionalRoundUp);
-  return Number(result);
-};
-
-/**
- * Function for calculate count of moovers
+ * Function for calculate count of movers
  * @param {Object} commonValues
  * @param {Object} localValues
  * @returns {Number} count of movers
  */
 export const calculateOfMovers = (commonValues, localValues) => {
-
+  const packingMover = commonValues.packing === 'No' ? 0 : 1;
   const cubicFt = Number(totalCubicFt(commonValues));
 
   if (cubicFt <= 0.000001) {
     return 0;
   }
 
-  const moversAjasment = truckRoundTo25(cubicFt) - truckRoundTo05(cubicFt);
+  const moversAjasment = (truckRoundTo25(cubicFt) - truckRoundTo05(cubicFt)).toFixed(1);
 
   const moversRoundUp = Math.ceil(truckRoundTo05(cubicFt) * 4) < 2 ? 2 : Math.ceil(truckRoundTo05(cubicFt) * 4);
   const moversRoundDown = Math.floor(truckRoundTo05(cubicFt) * 4) < 2 ? 2 : Math.floor(truckRoundTo05(cubicFt) * 4);
 
-  return moversAjasment >= 0.2 ? moversRoundDown : moversRoundUp;
+  const result = moversAjasment >= 0.2 ? Number(moversRoundDown) : Number(moversRoundUp);
+  return result + Number(packingMover) + Number(localValues.addMovers) - Number(localValues.removeMovers);
 };
+
+/**
+ * Function for calculate not rounded total trucks
+ * @param {Object} commonValues 
+ * @returns {String} not rounded total trucks
+ */
+export const totalTrucks = (commonValues) => {
+  const cubicFt = Number(totalCubicFt(commonValues));
+  return (cubicFt / 1400).toFixed(2);
+};
+
+/**
+ * function for calculatecounts of trucks for one trip
+ * @param {Object} commonValues 
+ * @returns {Number} - counts of trucks for one trip
+ */
+export const trucksForOneTrip = (commonValues) => {
+  const cubicFt = Number(totalCubicFt(commonValues));
+  return totalMiles(commonValues) >=1 ? trucksRoundUpToOne(cubicFt) : trucks5PercentForBiggest(cubicFt);
+};
+
+/**
+ * 
+ * @param {Object} commonValues 
+ * @returns {Boolean} - get biggest truck or not
+ */
+export const biggestTruck = (commonValues) => {
+  const cubicFt = Number(totalCubicFt(commonValues));
+  return truckRoundTo05(cubicFt) - trucksForOneTrip(commonValues) > 0 ? true : false;
+};
+
+/**
+ * function for calculate is one trip or two?
+ * @param {Object} commonValues 
+ * @param {Object} localValues 
+ * @returns {Boolean} return true or false - is one trip or is two trip
+ */
+export const isOneTrip = (commonValues, localValues) => {
+  if (localValues.noTwoTrips) {
+    return true;
+  }
+
+  const miles = totalMiles(commonValues);
+  const cubicFt = totalCubicFt(commonValues);
+
+  if (miles < 10 && truckRoundTo05(cubicFt) > 1) {
+    return false;
+  }
+
+  return true;
+}
+
+export const numberOfTrucks = (commonValues, localValues) => {
+  if (isOneTrip(commonValues, localValues) || (biggestTruck(commonValues) && !isOneTrip(commonValues, localValues))) {
+    return trucksForOneTrip(commonValues) - localValues.removeTrucks;
+  }
+
+  return trucksForOneTrip(commonValues) - 1;
+}

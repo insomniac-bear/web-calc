@@ -33,6 +33,21 @@ export const Role = {
   USER: 'user',
 };
 
+export const TypesOfDepartmentData = {
+  DOUBLE_FIELD: 'DOUBLE_FIELD',
+  FIELD: 'FIELD',
+  LIST: 'LIST',
+  RADIO: 'RADIO',
+  SECTION: 'SECTION',
+  SELECT: 'SELECT',
+};
+
+export const TypeOfInput = {
+  ANY: 'ANY',
+  STRING: 'STRING',
+  NUMBER: 'NUMBER',
+};
+
 export const LIMIT_DATA = 5;
 
 // export const API_URL = 'http://localhost:8000/api';

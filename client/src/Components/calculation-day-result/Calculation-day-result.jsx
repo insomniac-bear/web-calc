@@ -1,10 +1,14 @@
+// Components
+import { CalculationDayParams } from '../calculation-day-params/Calculation-day-params';
+import { CalculationDayPayment } from '../calculation-day-payment/Calculation-day-payment';
 // Utils
 import {
   calculateOfMovers,
   totalCubicFt,
-  totalBoxes,
+  numberOfTrucks,
+  totalTrucks
 } from '../../util/calculation-formulas';
-import { boxesKey } from '../../util/const';
+// import { boxesKey } from '../../util/const';
 // Styles
 import styles from './CalculationDayResult.module.css';
 
@@ -22,33 +26,9 @@ export const CalculationDayResult = (props) => {
           {calculationData.dayPackingNoPacking.rate && <p className={styles.rateName}>{calculationData.dayPackingNoPacking.rate}</p>}
         </div>
       }
-      <ul className={styles.paramsSection}>
-        <li className={styles.paramsItem}>
-          <p className={styles.paramsName}>Total Cubic:</p>
-          <span className={styles.paramsDecor}></span>
-          <p className={styles.paramsValue}>{totalCubicFt(commonValues)} ft.</p>
-        </li>
-        <li className={styles.paramsItem}>
-          <p className={styles.paramsName}>Small boxes:</p>
-          <span className={styles.paramsDecor}></span>
-          <p className={styles.paramsValue}>{totalBoxes(commonValues, boxesKey.SMALL)}</p>
-        </li>
-        <li className={styles.paramsItem}>
-          <p className={styles.paramsName}>Medium boxes:</p>
-          <span className={styles.paramsDecor}></span>
-          <p className={styles.paramsValue}>{totalBoxes(commonValues, boxesKey.MEDIUM)}</p>
-        </li>
-        <li className={styles.paramsItem}>
-          <p className={styles.paramsName}>Fragile boxes:</p>
-          <span className={styles.paramsDecor}></span>
-          <p className={styles.paramsValue}>{totalBoxes(commonValues, boxesKey.FRAGILE)}</p>
-        </li>
-        <li className={styles.paramsItem}>
-          <p className={styles.paramsName}>Movers:</p>
-          <span className={styles.paramsDecor}></span>
-          <p className={styles.paramsValue}>{calculateOfMovers(commonValues, localValues)}</p>
-        </li>
-       </ul>
+      <CalculationDayParams commonValues={commonValues} localValues={localValues} />
+      <p>The total amount of items is {totalTrucks(commonValues)} TRUCKS ({totalCubicFt(commonValues)} ft)</p>
+      <CalculationDayPayment calculationData={calculationData} />
     </section>
   );
 };

@@ -26,8 +26,8 @@ export const DepartmentRates = (props) => {
   const addRateBtnClick = (index, typeRate, isSameRate, isSameTruck) => {
     const newRate = typeRate === 'extra' ? {
       [`rateName${index}`]: '',
-      [`cashPayment${index}`]: isSameRate ? rates.ratesList[0].cashPayment0 : '',
       [`cardPayment${index}`]: isSameRate ? rates.ratesList[0].cardPayment0 : '',
+      [`deductPayment${index}`]: isSameRate ? rates.ratesList[0].deductPayment0 : '',
       [`extraMover${index}`]: isSameRate ? rates.ratesList[0].extraMover0 : '',
       [`extraTruck${index}`]: isSameTruck ? rates.ratesList[0].extraTruck0 : '',
     } :

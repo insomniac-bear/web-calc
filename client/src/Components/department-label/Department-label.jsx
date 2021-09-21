@@ -1,7 +1,5 @@
 // Third party libraries
 import PropTypes from 'prop-types';
-// Utils
-import { showComponent } from '../../util/utils';
 // Styles
 import styles from './DepartmentLabel.module.css';
 
@@ -24,10 +22,9 @@ export const DepartmentLabel = (props) => {
       htmlFor={inputId}
     >
       <p className={styles.inputName}>{title}</p>
-      {showComponent(
-        valueType,
+      {valueType&&
         <span className={styles.inputValueType}>{valueType}</span>
-      )}
+      }
       <input
         id={inputId}
         className={isLong ? styles.inputLongPadding : styles.input}

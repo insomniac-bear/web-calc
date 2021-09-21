@@ -3,13 +3,15 @@ import { nanoid } from 'nanoid';
 // Styles
 import styles from './CalculationTabDayValues.module.css';
 
-export const CalculationTabDayValues = ({ rates, formData, formChange }) => {
+export const CalculationTabDayValues = ({ rates, formData, formChange, resetLastTarget }) => {
 
   const onValueChange = (evt) => {
+    resetLastTarget();
     formChange(`dayPackingNoPacking.${evt.target.name}`, 'set', evt.target.value)
   }
 
   const checkboxValueChange = (evt) => {
+    resetLastTarget();
 
     switch (evt.target.value) {
       case 'true':
@@ -30,7 +32,10 @@ export const CalculationTabDayValues = ({ rates, formData, formChange }) => {
           <select
             className={styles.select}
             value={formData.dayPackingNoPacking.rate}
-            onChange={(evt) => formChange('dayPackingNoPacking.rate', 'set', evt.target.value)}
+            onChange={(evt) => {
+              resetLastTarget();
+              formChange('dayPackingNoPacking.rate', 'set', evt.target.value);
+            }}
           >
             <option value={''}>None</option>
             {

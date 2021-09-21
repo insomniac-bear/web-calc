@@ -16,6 +16,9 @@ export const calculatorDataModel = {
     hardFloorCovers: false,
     filmFloorCovers: false,
     numOfExtraHeavyItem: 0,
+    packingKitOverride: 0,
+    cratesCosts: [],
+    unpacking: 'No',
     extraStops: [],
   },
   dayPackingNoPacking: {

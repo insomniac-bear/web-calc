@@ -13,7 +13,7 @@ import styles from './CalculationCommonValues.module.css';
 
 const EXTRA_STOP_DATA_TEMPLATE = {
   baseLoadingHours: 0,
-  baseUnloadingHourse: 0,
+  baseUnloadingHours: 0,
   cubicFt: 0,
   miles: 0,
   driveTime: 0,
@@ -22,9 +22,9 @@ const EXTRA_STOP_DATA_TEMPLATE = {
   fragileBoxes: 0,
 };
 
-export const CalculationCommonValues = ({ commonValues, onFormChange }) => {
+export const CalculationCommonValues = ({ commonValues, onFormChange, lastTarget, setLastTarget, restLastTarget }) => {
   const keyNames = Object.keys(commonValues).slice(1, 9);
-  const [lastTarget, setLastTarget] = useState(undefined);
+  const [cratesNumber, setCratesNumber] = useState(0);
 
   const groupInputChange = (evt) => {
     setLastTarget(evt.target.name);
@@ -32,7 +32,7 @@ export const CalculationCommonValues = ({ commonValues, onFormChange }) => {
   };
 
   const checkboxValueChange = (evt) => {
-    setLastTarget(undefined);
+    restLastTarget();
 
     switch (evt.target.value) {
       case 'true':
@@ -51,18 +51,20 @@ export const CalculationCommonValues = ({ commonValues, onFormChange }) => {
 
   const addExtraStop = (evt) => {
     evt.preventDefault();
+    restLastTarget();
     onFormChange(`commonValues.extraStops`, 'push', { ...EXTRA_STOP_DATA_TEMPLATE });
   };
 
   const removeExtraStop = (evt) => {
     evt.preventDefault();
+    restLastTarget();
     onFormChange(`commonValues.extraStops.${commonValues.extraStops.length - 1}`, 'del');
   };
 
   return (
     <section className={styles.commonValues}>
       <label className={styles.commonLabel}>
-        <span className={styles.commonTxt}>Packing</span>
+        <span>Packing</span>
         <select
           className={styles.commonInput}
           name={'packing'}
@@ -71,6 +73,8 @@ export const CalculationCommonValues = ({ commonValues, onFormChange }) => {
         >
           <option>No</option>
           <option>Yes</option>
+          <option>Kitchen</option>
+          <option>Partial</option>
         </select>
       </label>
       {keyNames.map((it) => {
@@ -88,7 +92,7 @@ export const CalculationCommonValues = ({ commonValues, onFormChange }) => {
       })}
       <fieldset className={styles.checkboxContainer}>
         <label className={styles.checkLabel}>
-          <span className={styles.commonTxt}>Shuttle</span>
+          <span>Shuttle</span>
           <input
             className={styles.checkbox}
             type='checkbox'
@@ -96,10 +100,11 @@ export const CalculationCommonValues = ({ commonValues, onFormChange }) => {
             value={commonValues.shuttle}
             onChange={checkboxValueChange}
             checked={commonValues.shuttle}
+            onFocus={restLastTarget}
           />
         </label>
         <label className={styles.checkLabel}>
-          <span className={styles.commonTxt}>Liftgate</span>
+          <span>Liftgate</span>
           <input
             className={styles.checkbox}
             type='checkbox'
@@ -110,7 +115,7 @@ export const CalculationCommonValues = ({ commonValues, onFormChange }) => {
           />
         </label>
         <label className={styles.checkLabel}>
-          <span className={styles.commonTxt}>Hard Floor Covers</span>
+          <span>Hard Floor Covers</span>
           <input
             className={styles.checkbox}
             type='checkbox'
@@ -121,7 +126,7 @@ export const CalculationCommonValues = ({ commonValues, onFormChange }) => {
           />
         </label>
         <label className={styles.checkLabel}>
-          <span className={styles.commonTxt}>Film Floor Covers</span>
+          <span>Film Floor Covers</span>
           <input
             className={styles.checkbox}
             type='checkbox'
@@ -138,11 +143,66 @@ export const CalculationCommonValues = ({ commonValues, onFormChange }) => {
         value={commonValues.numOfExtraHeavyItem}
         inputName={`numOfExtraHeavyItem`}
         changeValue={(evt) => {
-            setLastTarget(undefined);
+            restLastTarget();
             onFormChange(`commonValues.${evt.target.name}`, 'set', evt.target.value)
           }
         }
       />
+      <CalculationCommonLabel
+          title={parseName(`packingKitOverride`)}
+          placeholder={'ex: 3'}
+          value={commonValues.packingKitOverride}
+          inputName={`packingKitOverride`}
+          changeValue={(evt) => {
+            restLastTarget();
+            onFormChange(`commonValues.${evt.target.name}`, 'set', evt.target.value)
+          }}
+      />
+      <label className={styles.commonLabel}>
+        <span>Number of crates</span>
+        <select
+            className={styles.commonInput}
+            name={'cratesNumber'}
+            value={cratesNumber}
+            onChange={(evt) => {
+              restLastTarget();
+              setCratesNumber(evt.target.value);
+              const crates = [];
+              for (let i = 0; i < evt.target.value; i++) {
+                crates.push({[`crateCost${i}`]: 0});
+              }
+              onFormChange(`commonValues.cratesCosts`, 'set', crates);
+            }}
+        >
+          <option>0</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+          <option>7</option>
+          <option>8</option>
+          <option>9</option>
+          <option>10</option>
+        </select>
+      </label>
+        {
+          cratesNumber > 0 &&
+          commonValues.cratesCosts.map((it, index) =>
+            <CalculationCommonLabel
+              key={nanoid(commonValues.cratesCosts.length)}
+              title={`Crates cost ${index + 1}`}
+              placeholder={'ex: 3'}
+              value={commonValues.cratesCosts[index][`crateCost${index}`]}
+              inputName={`crateCost${index}`}
+              changeValue={(evt) => {
+                setLastTarget(evt.target.name);
+                onFormChange(`commonValues.cratesCosts.${index}.${evt.target.name}`, 'set', evt.target.value)
+              }}
+              isFocused={lastTarget === `crateCost${index}`}
+            />)
+        }
       <fieldset className={styles.extraStop}>
         <h3 className={styles.extraTitle}>Extra stop:</h3>
         {commonValues.extraStops.length === 0 && <p>Extra stop isn't exist</p>}

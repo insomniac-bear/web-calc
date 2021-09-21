@@ -9,7 +9,7 @@ const SALT = Number(process.env.SALT);
 class UserService {
   /**********************************************************************
    * @method Registration - method for create user
-   * 
+   *
    * @param {String} login - login of saving user 
    * @param {String} password - password of saving user
    * @param {String} role - role of user in systen
@@ -41,7 +41,7 @@ class UserService {
 
   /**********************************************************************
    * @method login - method for authorization user
-   * 
+   *
    * @param {String} login - users login
    * @param {String} password - raw users password
    */
@@ -69,7 +69,7 @@ class UserService {
 
   /*********************************************************************
    * @method logout - method for delete refresh token from database
-   * 
+   *
    * @param {String} refreshToken - token for refresh
    * @returns {String} token - token, which was delete
    */
@@ -80,6 +80,7 @@ class UserService {
 
   /*********************************************************************
    * @method refresh - method for refresh tokens
+   *
    * @param {String} refreshToken - token for refresh authenticated data
    * @returns tokens and users data
    */
@@ -92,6 +93,7 @@ class UserService {
     const tokenFromDatabase = tokenService.findToken(refreshToken);
 
     if (!userData || !tokenFromDatabase) {
+      tokenService.removeToken(refreshToken);
       throw new Error('Unauthorized error');
     }
 

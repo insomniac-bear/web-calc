@@ -20,6 +20,7 @@ import { fetchedData } from '../../util/utils';
 import styles from './CalculationForm.module.css';
 
 export const CalculationForm = () => {
+  const [lastTarget, setLastTarget] = useState(undefined);
   const dispatch = useDispatch();
   const loadingDepartmentsStatus = useSelector(getProcessDepartmentsLoading);
   const departments = useSelector(getDepartments);
@@ -76,6 +77,12 @@ export const CalculationForm = () => {
     }
   }
 
+  const resetLastTarget = () => {
+    if (lastTarget) {
+      setLastTarget(undefined);
+    }
+  }
+
   return(
     <FormContainer>
       <form className={styles.form}>
@@ -93,6 +100,7 @@ export const CalculationForm = () => {
                     onFormValueChange(evt.target.name, 'set', evt.target.value)
                   }
                 }
+                onFocus={resetLastTarget}
                 placeholder={'000000000000'}
               />
             </label>
@@ -102,6 +110,7 @@ export const CalculationForm = () => {
                 className={styles.select}
                 value={calculationForm.department !== undefined ? calculationForm.department._id : 'None'}
                 onChange={onChangeDepartmentSelect}
+                onFocus={resetLastTarget}
               >
                 <option value={undefined}>None</option>
                 {
@@ -119,11 +128,15 @@ export const CalculationForm = () => {
             <CalculationCommonValues 
               commonValues={calculationForm.commonValues}
               onFormChange={onFormValueChange}
+              lastTarget={lastTarget}
+              setLastTarget={setLastTarget}
+              restLastTarget={resetLastTarget}
             />
             <CalculationTabDayValues
               rates={rates ? rates : []}
               formData={calculationForm}
               formChange={onFormValueChange}
+              resetLastTarget={resetLastTarget}
             />
             <CalculationDayResult calculationData={calculationForm}/>
           </section>

@@ -11,7 +11,6 @@ import {
   getDepartmentLoadingStatus,
 } from '../../clientStore/departmentSlice/department-slice';
 import { loadDepartment } from '../../clientStore/departmentSlice/department-async-thunk';
-import { showComponent } from '../../util/utils';
 
 export const DepartmentEdit = () => {
   const dispatch = useDispatch();
@@ -29,8 +28,8 @@ export const DepartmentEdit = () => {
 
   return(
     <React.Fragment>
-      {showComponent(loadingStatus !== 'successed', <Loading />)}
-      {showComponent(loadingStatus === 'successed', <DepartmentForm departmentData={ department } formType={'edit'} departmentId={id} />)}
+      {loadingStatus !== 'successed' && <Loading />}
+      {loadingStatus === 'successed' && <DepartmentForm departmentData={ department } formType={'edit'} departmentId={id} />}
     </React.Fragment>
   );
 }
